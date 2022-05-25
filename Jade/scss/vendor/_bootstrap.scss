@@ -1,0 +1,41 @@
+@use '../base';
+
+.container {
+  .navbar {
+    background-color: base.$primary;
+
+    .container-fluid {
+
+      .navbar-collapse {
+        justify-content: unset;
+
+        .navbar-nav {
+          width: 100%;
+          .nav-item {
+            flex: 1 0 0;
+
+            .nav-link.active {
+              color: base.$font--hover;
+              border-bottom: 3px solid base.$primary--dark;
+            }
+
+            .nav-link {
+              padding: 15px 20px;
+              
+              text-align: center;
+              @include base.subtitle;
+              color: base.$primary--dark;
+              
+              &:hover {
+                border-bottom: 3px solid base.$primary--dark;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

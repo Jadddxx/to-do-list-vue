@@ -1,0 +1,136 @@
+@use '../abstracts';
+@use '../base';
+
+
+.task {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  
+  border-radius: 10px;
+  background-color: base.$body_bg--light;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 10px;
+
+    &__title {
+      padding: 28px 32px;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      border-bottom: 2px base.$body_bg solid;
+
+
+      input {
+        height: 24px;
+        width: 24px;
+
+      }
+
+      h2 {
+        @include base.title;
+      }
+
+      .collect_icon {
+
+      }
+      .edit_icon {
+        color: base.$primary;
+      }
+    }
+
+    &__detail {
+      padding: 28px 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .date {
+        display: flex;
+        flex-direction: column;
+        label {
+          @include base.subtitle;
+        }
+
+        &__input {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          input {
+            height: 35px;
+            width: 162px;
+          }
+          input:first-of-type {
+  
+          }
+          input:last-of-type {
+  
+          }
+        }
+      }
+
+      .file {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          @include base.subtitle;
+        }
+        input {
+
+        }
+      }
+
+      .comment {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          @include base.subtitle;
+        }
+        textarea {
+          resize: none;
+
+          @include abstracts.breakpoints(768px){
+            height: 120px;
+            width: 445px;
+          }
+        }
+      }
+  
+    }
+
+    &__status {
+      display: flex;
+
+      .cancel {
+        height: 60px;
+        width: 310px;
+
+        @include base.title;
+
+        background-color: base.$font--hover;
+        color: base.$checked;
+
+        border: 1px transparent solid;
+      }
+      .add {
+        height: 60px;
+        width: 310px;
+
+        @include base.title;
+
+        background-color: base.$primary;
+        color: base.$font--hover;
+
+        border: 1px transparent solid;
+      }
+    }
+  }
+
+}

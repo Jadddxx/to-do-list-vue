@@ -2,20 +2,26 @@
   text-transform: capitalize;
   font-family: "roboto medium";
   font-size: 24px;
+  font-weight: 600;
+  margin: 0;
 }
 
 @mixin subtitle {
   text-transform: capitalize;
   font-family: "roboto medium";
   font-size: 20px;
+  font-weight: 600;
+  margin: 0;
 }
 
 @mixin paragraph {
   font-family: "roboto regular";
   font-size: 16px;
+  margin: 0;
 }
 
 @mixin status {
   font-family: "roboto italic";
   font-size: 16px;
+  margin: 0;
 }

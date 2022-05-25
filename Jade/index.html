@@ -8,13 +8,36 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link href="style/style.css" rel="stylesheet">
 </head>
 <body>
   <header>
-    <div class="container"></div>
+    <div class="container p-0">
+      <nav class="navbar navbar-expand-md p-0">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">my tasks</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">in progress</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">completed</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
   </header>
-  <div class="container">
+  <div class="container p-0">
     <main>
       <div class="task">
         <div class="task__body">
@@ -26,9 +49,11 @@
           </div>
           <div class="task__body__detail">
             <div class="date">
-              <label for="date">date</label>
-              <input type="text" placeholder="yyyy/mm/dd">
-              <input type="text" placeholder="hh:mm">
+              <label for="date">dateline</label>
+              <div class="date__input">
+                <input type="text" placeholder="yyyy/mm/dd">
+                <input type="text" placeholder="hh:mm">
+              </div>
             </div>
             <div class="file">
               <label for="file">file</label>
@@ -36,20 +61,23 @@
             </div>
             <div class="comment">
               <label for="comment">comment</label>
-              <textarea name="" id="comment" cols="30" rows="10" placeholder="type your memo here...">
+              <textarea name="" id="comment" cols="10" rows="5" placeholder="type your memo here...">
               </textarea>
             </div>
           </div>
           <div class="task__body__status">
-            <div class="cancel"></div>
-            <div class="add"></div>
+            <button class="cancel" type="reset">cancel</button>
+            <button class="add" type="submit">add task</button>
           </div>
         </div>
       </div>
       <div class="list">
         <ul>
           <li class="task__body__title">
-
+            <input type="checkbox" name="checkbox" id="">
+            <h2>type something here...</h2>
+            <div class="collect_icon"></div>
+            <div class="edit_icon"></div>
           </li>
           <li class="task__body__title">
             <input type="checkbox" name="checkbox" id="">
@@ -80,5 +108,7 @@
     </main>
     <footer></footer>
   </div>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

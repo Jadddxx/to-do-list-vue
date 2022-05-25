@@ -1,3 +1,180 @@
+a {
+  text-decoration: none;
+}
 
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.task {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
+.task__body {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+.task__body__title {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 2px #c8c8c8 solid;
+}
+.task__body__title input {
+  height: 24px;
+  width: 24px;
+}
+.task__body__title h2 {
+  text-transform: capitalize;
+  font-family: "roboto medium";
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+.task__body__title .edit_icon {
+  color: #4A90E2;
+}
+.task__body__detail {
+  padding: 28px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.task__body__detail .date {
+  display: flex;
+  flex-direction: column;
+}
+.task__body__detail .date label {
+  text-transform: capitalize;
+  font-family: "roboto medium";
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+.task__body__detail .date__input {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.task__body__detail .date__input input {
+  height: 35px;
+  width: 162px;
+}
+.task__body__detail .file {
+  display: flex;
+  flex-direction: column;
+}
+.task__body__detail .file label {
+  text-transform: capitalize;
+  font-family: "roboto medium";
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+.task__body__detail .comment {
+  display: flex;
+  flex-direction: column;
+}
+.task__body__detail .comment label {
+  text-transform: capitalize;
+  font-family: "roboto medium";
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+.task__body__detail .comment textarea {
+  resize: none;
+}
+@media (min-width: 768px) {
+  .task__body__detail .comment textarea {
+    height: 120px;
+    width: 445px;
+  }
+}
+.task__body__status {
+  display: flex;
+}
+.task__body__status .cancel {
+  height: 60px;
+  width: 310px;
+  text-transform: capitalize;
+  font-family: "roboto medium";
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  background-color: #ffffff;
+  color: #D0021B;
+  border: 1px transparent solid;
+}
+.task__body__status .add {
+  height: 60px;
+  width: 310px;
+  text-transform: capitalize;
+  font-family: "roboto medium";
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  background-color: #4A90E2;
+  color: #ffffff;
+  border: 1px transparent solid;
+}
+
+.list {
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.list .task__body__title {
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: #4A90E2;
+}
+
+body {
+  background-color: #c8c8c8;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 620px;
+  }
+}
+
+.container .navbar {
+  background-color: #4A90E2;
+}
+.container .navbar .container-fluid .navbar-collapse {
+  justify-content: unset;
+}
+.container .navbar .container-fluid .navbar-collapse .navbar-nav {
+  width: 100%;
+}
+.container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item {
+  flex: 1 0 0;
+}
+.container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link.active {
+  color: #ffffff;
+  border-bottom: 3px solid #00408B;
+}
+.container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link {
+  padding: 15px 20px;
+  text-align: center;
+  text-transform: capitalize;
+  font-family: "roboto medium";
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #00408B;
+}
+.container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+  border-bottom: 3px solid #00408B;
+}
 
 /*# sourceMappingURL=style.css.map */
