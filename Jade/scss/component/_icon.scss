@@ -1,0 +1,25 @@
+
+
+@mixin  icon_basic {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+@mixin icon_justify($top) {
+  position: relative;
+  top: $top;
+}
+
+// 上層要有relative
+@mixin icon_Pseudo($left ,$content, $style) {
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+
+  position: absolute;
+  left: $left;
+
+  content: $content;
+  font-family: "Font Awesome 5 Free";
+  font-weight: $style;
+}

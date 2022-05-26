@@ -7,6 +7,10 @@
 
     .container-fluid {
 
+      button {
+        padding: 10px;
+      }
+
       .navbar-collapse {
         justify-content: unset;
 
@@ -14,6 +18,7 @@
           width: 100%;
           .nav-item {
             flex: 1 0 0;
+            text-align: left;
 
             .nav-link.active {
               color: base.$font--hover;
@@ -23,11 +28,14 @@
             }
             
             .nav-link {
-              padding: 15px 20px;
-              
-              text-align: center;
-              @include base.subtitle;
+              padding: 15px 20px;            
               color: base.$primary--dark;
+              @include base.subtitle;
+
+              text-align: left;
+              @include abstracts.breakpoints(768px) {
+                text-align: center;
+              }
               
               &:hover {
                 border: none;

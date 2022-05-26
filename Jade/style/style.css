@@ -7,26 +7,58 @@ ul {
   list-style: none;
 }
 
+.list {
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.list li + li {
+  margin-top: 10px;
+}
+.list .task__body__title {
+  background-color: #f2f2f2;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+.list .task__body__title:first-of-type, .list .task__body__title:nth-of-type(2) {
+  background-color: #FFF2DC;
+}
+.list .task__body__title:first-of-type .icon_box .collect_icon i, .list .task__body__title:nth-of-type(2) .icon_box .collect_icon i {
+  color: #F5A623;
+}
+.list .task__body__title:first-of-type .icon_box .edit_icon i, .list .task__body__title:nth-of-type(2) .icon_box .edit_icon i {
+  color: initial;
+}
+.list .task__body__title:first-of-type .icon_box .edit_icon i:active, .list .task__body__title:nth-of-type(2) .icon_box .edit_icon i:active {
+  color: #4A90E2;
+}
+
 .task {
   margin-top: 22px;
   display: flex;
   flex-direction: column;
+  gap: 0;
   border-radius: 10px;
   background-color: #f2f2f2;
 }
 .task__body {
   display: flex;
   flex-direction: column;
+  gap: 0;
   border-radius: 30px;
 }
+
 .task__body__title {
   padding: 28px 32px;
   display: flex;
+  flex-direction: row;
+  gap: 0;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 2px #c8c8c8 solid;
 }
 .task__body__title .title_box {
   display: flex;
+  flex-direction: row;
   gap: 20px;
 }
 .task__body__title .title_box input[type=checkbox] {
@@ -54,19 +86,20 @@ ul {
 .task__body__title .title_box h2 {
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   margin: 0;
 }
 .task__body__title .icon_box {
   display: flex;
+  flex-direction: row;
   gap: 20px;
 }
 .task__body__title .icon_box .collect_icon i, .task__body__title .icon_box .edit_icon i {
+  cursor: pointer;
   font-size: 20px;
   position: relative;
   top: 4px;
-  cursor: pointer;
 }
 .task__body__title .icon_box .collect_icon i:active {
   color: #F5A623;
@@ -77,6 +110,7 @@ ul {
 .task__body__title .icon_box .edit_icon i:active {
   color: initial;
 }
+
 .task__body__detail {
   padding: 28px 96px;
   display: flex;
@@ -86,12 +120,12 @@ ul {
 .task__body__detail .date {
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 .task__body__detail .date h3 {
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
   margin: 0;
   position: relative;
 }
@@ -116,6 +150,12 @@ ul {
   height: 35px;
   width: 100%;
 }
+.task__body__detail .date__input input::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  color: #c8c8c8;
+}
 @media (min-width: 768px) {
   .task__body__detail .date__input input {
     width: 162px;
@@ -124,14 +164,14 @@ ul {
 .task__body__detail .file {
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 .task__body__detail .file h3 {
-  position: relative;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
   margin: 0;
+  position: relative;
 }
 .task__body__detail .file h3::before {
   font-style: normal;
@@ -141,11 +181,10 @@ ul {
   left: -25px;
   content: "\f15b";
   font-family: "Font Awesome 5 Free";
-  font-weight: 200;
+  font-weight: 300;
 }
 .task__body__detail .file label {
   margin-top: 10px;
-  display: inline-block;
   color: #c8c8c8;
   cursor: pointer;
 }
@@ -158,14 +197,14 @@ ul {
 .task__body__detail .comment {
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 .task__body__detail .comment h3 {
-  position: relative;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
   margin: 0;
+  position: relative;
 }
 .task__body__detail .comment h3::before {
   font-style: normal;
@@ -178,36 +217,45 @@ ul {
   font-weight: 300;
 }
 .task__body__detail .comment textarea {
-  margin-top: 10px;
   resize: none;
+  margin-top: 10px;
   width: 100%;
-}
-.task__body__detail .comment textarea::placeholder {
-  text-transform: capitalize;
+  height: auto;
 }
 @media (min-width: 768px) {
   .task__body__detail .comment textarea {
     height: 120px;
   }
 }
+.task__body__detail .comment textarea::placeholder {
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  color: #c8c8c8;
+}
+
 .task__body__status {
   display: flex;
+  flex-direction: row;
+  gap: 0;
 }
 .task__body__status .cancel {
   display: flex;
+  flex-direction: row;
+  gap: 10px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  height: 60px;
-  width: 310px;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   margin: 0;
+  height: 60px;
+  width: 310px;
+  border: 1px transparent solid;
   background-color: #ffffff;
   color: #D0021B;
-  border: 1px transparent solid;
 }
 .task__body__status .cancel p {
   margin: 0;
@@ -219,21 +267,22 @@ ul {
   }
 }
 .task__body__status .cancel i {
-  font-size: 30px;
   position: relative;
-  top: -3px;
+  top: -2px;
+  font-size: 20px;
 }
 .task__body__status .add {
   display: flex;
+  flex-direction: row;
+  gap: 10px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   height: 60px;
   width: 310px;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   margin: 0;
   background-color: #4A90E2;
   color: #ffffff;
@@ -249,34 +298,9 @@ ul {
   }
 }
 .task__body__status .add i {
-  font-size: 30px;
   position: relative;
   top: -3px;
-}
-
-.list {
-  margin-top: 20px;
-  border-radius: 10px;
-}
-.list li + li {
-  margin-top: 10px;
-}
-.list .task__body__title {
-  background-color: #f2f2f2;
-  border: 1px solid transparent;
-  border-radius: 5px;
-}
-.list .task__body__title:first-of-type, .list .task__body__title:nth-of-type(2) {
-  background-color: #FFF2DC;
-}
-.list .task__body__title:first-of-type .icon_box .collect_icon i, .list .task__body__title:nth-of-type(2) .icon_box .collect_icon i {
-  color: #F5A623;
-}
-.list .task__body__title:first-of-type .icon_box .edit_icon i, .list .task__body__title:nth-of-type(2) .icon_box .edit_icon i {
-  color: initial;
-}
-.list .task__body__title:first-of-type .icon_box .edit_icon i:active, .list .task__body__title:nth-of-type(2) .icon_box .edit_icon i:active {
-  color: #4A90E2;
+  font-size: 30px;
 }
 
 header {
@@ -296,6 +320,9 @@ body {
 .container .navbar {
   background-color: #4A90E2;
 }
+.container .navbar .container-fluid button {
+  padding: 10px;
+}
 .container .navbar .container-fluid .navbar-collapse {
   justify-content: unset;
 }
@@ -304,6 +331,7 @@ body {
 }
 .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item {
   flex: 1 0 0;
+  text-align: left;
 }
 .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link.active {
   color: #ffffff;
@@ -315,13 +343,18 @@ body {
 }
 .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link {
   padding: 15px 20px;
-  text-align: center;
+  color: #00408B;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
-  color: #00408B;
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link {
+    text-align: center;
+  }
 }
 .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
   border: none;
