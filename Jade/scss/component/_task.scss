@@ -14,34 +14,83 @@
     display: flex;
     flex-direction: column;
 
-    border-radius: 10px;
+    border-radius: 30px;
 
     &__title {
       padding: 28px 32px;
 
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
 
       border-bottom: 2px base.$body_bg solid;
 
+      .title_box {
+        display: flex;
+        gap: 20px;
 
-      input {
-        height: 24px;
-        width: 24px;
+        input[type="checkbox"] {
+          appearance: none;
+          height: 24px;
+          width: 24px;
+  
+          background-color: white;
+          border: 0.15em solid white;
+  
+          display: flex;
+          align-items: center;
+  
+          &::before {
+            content: "";
+            height: 20px;
+            width: 20px;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  
+            transform: scale(0);
+            transform-origin: bottom left;
+            transition: 120ms transform ease-in-out;
+  
+            background-color: base.$primary;
+          }
+  
+          &:checked::before {
+            transform: scale(1);
+          }
+        }
+  
+        h2 {
+          @include base.title;
+        }
+      }
+      .icon_box {
+        display: flex;
+        gap: 20px;
 
+        .collect_icon, .edit_icon {
+          i {
+            font-size: 20px;
+            position: relative;
+            top: 4px;
+            cursor: pointer;
+          }          
+        }
+
+        .collect_icon {
+          i {
+            &:active {
+              color: base.$form_bg--dark;
+            }
+          }
+        }
+        .edit_icon {
+          i {
+            color: base.$primary;
+            &:active {
+              color: initial;
+            }
+          }
+        }
       }
 
-      h2 {
-        @include base.title;
-      }
-
-      .collect_icon {
-
-      }
-      .edit_icon {
-        color: base.$primary;
-      }
     }
 
     &__detail {
@@ -53,36 +102,76 @@
       .date {
         display: flex;
         flex-direction: column;
-        label {
+
+        h3 {
           @include base.subtitle;
+          position: relative;
+
+          &::before {
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+
+            position: absolute;
+            left: -25px;
+
+            content: "\f073";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 400;
+          } 
         }
 
         &__input {
           display: flex;
           flex-direction: row;
           gap: 10px;
+          width: 100%;
+
           input {
+            margin-top: 10px;
             height: 35px;
-            width: 162px;
+            width: 100%;
+            
+            @include abstracts.breakpoints(768px) {             
+              width: 162px;
+            }
           }
-          input:first-of-type {
-  
-          }
-          input:last-of-type {
-  
-          }
+
         }
       }
 
       .file {
         display: flex;
         flex-direction: column;
-
-        label {
+        h3 {
+          position: relative;
           @include base.subtitle;
+
+          &::before {
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+
+            position: absolute;
+            left: -25px;
+
+            content: "\f15b";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 200;
+
+          } 
+        }
+        label {
+          margin-top: 10px;
+          display: inline-block;
+          color: base.$body_bg;
+          cursor: pointer;
+          i {
+            font-size: 30px;
+          }
         }
         input {
-
+          display: none;
         }
       }
 
@@ -90,15 +179,33 @@
         display: flex;
         flex-direction: column;
 
-        label {
+        h3 {
+          position: relative;
           @include base.subtitle;
+
+          &::before {
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+
+            position: absolute;
+            left: -25px;
+
+            content: "\f4ad";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 300;
+          } 
         }
         textarea {
+          margin-top: 10px;
           resize: none;
+          width: 100%;
 
+          &::placeholder {
+            text-transform: capitalize;
+          }
           @include abstracts.breakpoints(768px){
             height: 120px;
-            width: 445px;
           }
         }
       }
@@ -109,6 +216,11 @@
       display: flex;
 
       .cancel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
         height: 60px;
         width: 310px;
 
@@ -116,10 +228,28 @@
 
         background-color: base.$font--hover;
         color: base.$checked;
-
         border: 1px transparent solid;
+
+        p {
+          margin: 0;
+          display: none;
+          @include abstracts.breakpoints(576px) {
+            display: block;
+          }
+        }
+
+        i {
+          font-size: 30px;
+          position: relative;
+          top: -3px;
+        }
       }
       .add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
         height: 60px;
         width: 310px;
 
@@ -127,8 +257,21 @@
 
         background-color: base.$primary;
         color: base.$font--hover;
-
         border: 1px transparent solid;
+
+        p {
+          margin: 0;
+          display: none;
+          @include abstracts.breakpoints(576px) {
+            display: block;
+          }
+        }
+        i {
+          font-size: 30px;
+          position: relative;
+          top: -3px;
+        }
+
       }
     }
   }

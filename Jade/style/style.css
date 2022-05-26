@@ -17,28 +17,65 @@ ul {
 .task__body {
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 .task__body__title {
   padding: 28px 32px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   border-bottom: 2px #c8c8c8 solid;
 }
-.task__body__title input {
+.task__body__title .title_box {
+  display: flex;
+  gap: 20px;
+}
+.task__body__title .title_box input[type=checkbox] {
+  appearance: none;
   height: 24px;
   width: 24px;
+  background-color: white;
+  border: 0.15em solid white;
+  display: flex;
+  align-items: center;
 }
-.task__body__title h2 {
+.task__body__title .title_box input[type=checkbox]::before {
+  content: "";
+  height: 20px;
+  width: 20px;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  background-color: #4A90E2;
+}
+.task__body__title .title_box input[type=checkbox]:checked::before {
+  transform: scale(1);
+}
+.task__body__title .title_box h2 {
   text-transform: capitalize;
-  font-family: "roboto medium";
+  font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 600;
   margin: 0;
 }
-.task__body__title .edit_icon {
+.task__body__title .icon_box {
+  display: flex;
+  gap: 20px;
+}
+.task__body__title .icon_box .collect_icon i, .task__body__title .icon_box .edit_icon i {
+  font-size: 20px;
+  position: relative;
+  top: 4px;
+  cursor: pointer;
+}
+.task__body__title .icon_box .collect_icon i:active {
+  color: #F5A623;
+}
+.task__body__title .icon_box .edit_icon i {
   color: #4A90E2;
+}
+.task__body__title .icon_box .edit_icon i:active {
+  color: initial;
 }
 .task__body__detail {
   padding: 28px 96px;
@@ -50,61 +87,121 @@ ul {
   display: flex;
   flex-direction: column;
 }
-.task__body__detail .date label {
+.task__body__detail .date h3 {
   text-transform: capitalize;
-  font-family: "roboto medium";
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 600;
   margin: 0;
+  position: relative;
+}
+.task__body__detail .date h3::before {
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  position: absolute;
+  left: -25px;
+  content: "\f073";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
 }
 .task__body__detail .date__input {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  width: 100%;
 }
 .task__body__detail .date__input input {
+  margin-top: 10px;
   height: 35px;
-  width: 162px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .task__body__detail .date__input input {
+    width: 162px;
+  }
 }
 .task__body__detail .file {
   display: flex;
   flex-direction: column;
 }
-.task__body__detail .file label {
+.task__body__detail .file h3 {
+  position: relative;
   text-transform: capitalize;
-  font-family: "roboto medium";
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 600;
   margin: 0;
+}
+.task__body__detail .file h3::before {
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  position: absolute;
+  left: -25px;
+  content: "\f15b";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 200;
+}
+.task__body__detail .file label {
+  margin-top: 10px;
+  display: inline-block;
+  color: #c8c8c8;
+  cursor: pointer;
+}
+.task__body__detail .file label i {
+  font-size: 30px;
+}
+.task__body__detail .file input {
+  display: none;
 }
 .task__body__detail .comment {
   display: flex;
   flex-direction: column;
 }
-.task__body__detail .comment label {
+.task__body__detail .comment h3 {
+  position: relative;
   text-transform: capitalize;
-  font-family: "roboto medium";
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 600;
   margin: 0;
 }
+.task__body__detail .comment h3::before {
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  position: absolute;
+  left: -25px;
+  content: "\f4ad";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 300;
+}
 .task__body__detail .comment textarea {
+  margin-top: 10px;
   resize: none;
+  width: 100%;
+}
+.task__body__detail .comment textarea::placeholder {
+  text-transform: capitalize;
 }
 @media (min-width: 768px) {
   .task__body__detail .comment textarea {
     height: 120px;
-    width: 445px;
   }
 }
 .task__body__status {
   display: flex;
 }
 .task__body__status .cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   height: 60px;
   width: 310px;
   text-transform: capitalize;
-  font-family: "roboto medium";
+  font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 600;
   margin: 0;
@@ -112,11 +209,29 @@ ul {
   color: #D0021B;
   border: 1px transparent solid;
 }
+.task__body__status .cancel p {
+  margin: 0;
+  display: none;
+}
+@media (min-width: 576px) {
+  .task__body__status .cancel p {
+    display: block;
+  }
+}
+.task__body__status .cancel i {
+  font-size: 30px;
+  position: relative;
+  top: -3px;
+}
 .task__body__status .add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   height: 60px;
   width: 310px;
   text-transform: capitalize;
-  font-family: "roboto medium";
+  font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 600;
   margin: 0;
@@ -124,13 +239,44 @@ ul {
   color: #ffffff;
   border: 1px transparent solid;
 }
+.task__body__status .add p {
+  margin: 0;
+  display: none;
+}
+@media (min-width: 576px) {
+  .task__body__status .add p {
+    display: block;
+  }
+}
+.task__body__status .add i {
+  font-size: 30px;
+  position: relative;
+  top: -3px;
+}
 
 .list {
   margin-top: 20px;
   border-radius: 10px;
 }
+.list li + li {
+  margin-top: 10px;
+}
 .list .task__body__title {
   background-color: #f2f2f2;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+.list .task__body__title:first-of-type, .list .task__body__title:nth-of-type(2) {
+  background-color: #FFF2DC;
+}
+.list .task__body__title:first-of-type .icon_box .collect_icon i, .list .task__body__title:nth-of-type(2) .icon_box .collect_icon i {
+  color: #F5A623;
+}
+.list .task__body__title:first-of-type .icon_box .edit_icon i, .list .task__body__title:nth-of-type(2) .icon_box .edit_icon i {
+  color: initial;
+}
+.list .task__body__title:first-of-type .icon_box .edit_icon i:active, .list .task__body__title:nth-of-type(2) .icon_box .edit_icon i:active {
+  color: #4A90E2;
 }
 
 header {
@@ -138,7 +284,7 @@ header {
 }
 
 body {
-  background-color: #c8c8c8;
+  background-color: #E1E1E1;
 }
 
 @media (min-width: 768px) {
@@ -161,20 +307,29 @@ body {
 }
 .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link.active {
   color: #ffffff;
-  border-bottom: 3px solid #00408B;
+}
+@media (min-width: 768px) {
+  .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link.active {
+    border-bottom: 3px solid #00408B;
+  }
 }
 .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link {
   padding: 15px 20px;
   text-align: center;
   text-transform: capitalize;
-  font-family: "roboto medium";
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 600;
   margin: 0;
   color: #00408B;
 }
 .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
-  border-bottom: 3px solid #00408B;
+  border: none;
+}
+@media (min-width: 768px) {
+  .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+    border-bottom: 3px solid #00408B;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
