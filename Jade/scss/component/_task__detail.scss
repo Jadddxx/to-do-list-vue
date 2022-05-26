@@ -23,24 +23,8 @@
           } 
         }
 
-        &__input {
-          @include display.flex(row, 10px);
-          width: 100%;
-
-          input {
-            margin-top: 10px;
-
-            &::placeholder {
-              @include base.status;
-              color: base.$body_bg;
-            }
-            height: 35px;
-            width: 100%;            
-            @include abstracts.breakpoints(768px) {             
-              width: 162px;
-            }
-          }
-
+          &__input {
+            // component/input
         }
       }
       
@@ -82,20 +66,7 @@
           } 
         }
         textarea {
-          resize: none;
-          margin-top: 10px;
-
-          width: 100%;
-          height: auto;
-          @include abstracts.breakpoints(768px){
-            height: 120px;
-          }
-
-          &::placeholder {
-            text-transform: capitalize;
-            @include base.status;
-            color: base.$body_bg;
-          }
+          // component/input
         }
       } 
     }

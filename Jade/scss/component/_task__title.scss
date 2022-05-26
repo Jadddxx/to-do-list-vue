@@ -15,7 +15,7 @@
       border-bottom: 2px base.$body_bg solid;
       
       .title_box {
-        @include display.flex(row, 20px);
+        @include display.flex(row, 15px);
 
         input[type="checkbox"] {
           @include input.input__tick;

@@ -1,4 +1,6 @@
 @use '../base';
+@use '../abstracts';
+@use 'display';
 
 
 @mixin input__tick {
@@ -28,4 +30,51 @@
     &:checked::before {
       transform: scale(1);
     }
+}
+
+.task {
+  .date {
+    &__input {
+      @include display.flex(row, 10px);
+      width: 100%;
+
+      input {
+        margin-top: 10px;
+        padding: 5px 20px;
+        border: 1px transparent solid;
+
+        height: 35px;
+        width: 100%;            
+        @include abstracts.breakpoints(768px) {             
+          width: 162px;
+        }
+
+        &::placeholder {
+          @include base.status;
+          color: base.$body_bg;
+        }
+      }
+    }
+  }
+
+  .comment {
+    textarea {
+      margin-top: 10px;
+      padding: 5px 20px;
+      border: 1px transparent solid;
+      resize: none;
+
+      width: 100%;
+      height: auto;
+      @include abstracts.breakpoints(768px){
+        height: 120px;
+      }
+
+      &::placeholder {
+        text-transform: capitalize;
+        @include base.status;
+        color: base.$body_bg;
+      }
+    }
+  }
 }
