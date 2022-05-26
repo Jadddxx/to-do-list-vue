@@ -1,37 +1,55 @@
 @use '../base';
+@use 'display';
 
 .list {
   margin-top: 20px;
-  border-radius: 10px;
 
-  li + li {
-    margin-top: 10px;
-  }
   
+  li {
+    & + li {    
+      margin-top: 10px;
+    }
   .task__body__title {
-    background-color: base.$body_bg--light;
     border: 1px solid transparent;
     border-radius: 5px;
+    }
+  }
+}
 
-    &:first-of-type, &:nth-of-type(2) {
-      background-color: base.$form_bg--light;
-      .icon_box {
-        .collect_icon {
-          i {
-            color: base.$form_bg--dark;
-          }
-        }
-        .edit_icon {
-          i {
-            color: initial;
+
+
+.normal_status {
+  background-color: base.$body_bg--light;
+}
+
+.delete_status {
+  background-color: base.$body_bg--light;
+  h2 {
+    color: base.$body_bg--dark;
+    text-decoration:line-through;
+  }
+  // input:checked {
+  //   transform: scale(1);
+  // }
+}
+
+.active_status {
+  background-color: base.$form_bg--light;
   
-            &:active {
-              color: base.$primary;
-            }
-          }
+  .icon_box {
+    .collect_icon {
+      i {
+        color: base.$form_bg--dark;
+      }
+    }
+    .edit_icon {
+      i {
+        color: initial;
+  
+        &:active {
+          color: base.$primary;
         }
       }
     }
-
   }
 }

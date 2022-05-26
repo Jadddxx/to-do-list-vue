@@ -54,26 +54,37 @@ ul {
 
 .list {
   margin-top: 20px;
-  border-radius: 10px;
 }
 .list li + li {
   margin-top: 10px;
 }
-.list .task__body__title {
-  background-color: #f2f2f2;
+.list li .task__body__title {
   border: 1px solid transparent;
   border-radius: 5px;
 }
-.list .task__body__title:first-of-type, .list .task__body__title:nth-of-type(2) {
+
+.normal_status {
+  background-color: #f2f2f2;
+}
+
+.delete_status {
+  background-color: #f2f2f2;
+}
+.delete_status h2 {
+  color: #757575;
+  text-decoration: line-through;
+}
+
+.active_status {
   background-color: #FFF2DC;
 }
-.list .task__body__title:first-of-type .icon_box .collect_icon i, .list .task__body__title:nth-of-type(2) .icon_box .collect_icon i {
+.active_status .icon_box .collect_icon i {
   color: #F5A623;
 }
-.list .task__body__title:first-of-type .icon_box .edit_icon i, .list .task__body__title:nth-of-type(2) .icon_box .edit_icon i {
+.active_status .icon_box .edit_icon i {
   color: initial;
 }
-.list .task__body__title:first-of-type .icon_box .edit_icon i:active, .list .task__body__title:nth-of-type(2) .icon_box .edit_icon i:active {
+.active_status .icon_box .edit_icon i:active {
   color: #4A90E2;
 }
 
