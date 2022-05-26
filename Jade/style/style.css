@@ -15,7 +15,7 @@ ul {
 }
 .task .date__input input {
   margin-top: 10px;
-  padding: 5px 20px;
+  padding: 5px 15px;
   border: 1px transparent solid;
   height: 35px;
   width: 100%;
@@ -27,13 +27,13 @@ ul {
 }
 .task .date__input input::placeholder {
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   color: #c8c8c8;
 }
 .task .comment textarea {
   margin-top: 10px;
-  padding: 5px 20px;
+  padding: 5px 15px;
   border: 1px transparent solid;
   resize: none;
   width: 100%;
@@ -47,7 +47,7 @@ ul {
 .task .comment textarea::placeholder {
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   color: #c8c8c8;
 }
@@ -55,16 +55,49 @@ ul {
 .list {
   margin-top: 20px;
 }
-.list li + li {
+.list .status {
+  padding: 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.list .status + .status {
   margin-top: 10px;
 }
-.list li .task__body__title {
+.list .status__items {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin-left: 40px;
+  color: #757575;
+}
+.list .status .task__body__title {
+  padding: 0;
   border: 1px solid transparent;
-  border-radius: 5px;
 }
 
-.normal_status {
+.list .active_status .status__items__date i::after {
+  content: "5/14";
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.list .status__items__date i::after {
+  content: "2019/6/18";
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.status {
   background-color: #f2f2f2;
+  border-radius: 5px;
 }
 
 .delete_status {

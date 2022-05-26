@@ -16,7 +16,7 @@
   <header>
     <div class="container p-0">
       <nav class="navbar navbar-expand-md p-0">
-        <div class="container-fluid">
+        <div class="container-fluid p-0">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -77,8 +77,8 @@
       </div>
       <div class="list">
         <ul>
-          <li>
-            <div class="task__body__title active_status">
+          <li class="status active_status">
+            <div class="task__body__title">
               <div class="title_box">
                 <input type="checkbox" name="checkbox" id="">
                 <h2>type something here...</h2>
@@ -88,9 +88,14 @@
                 <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
               </div>
             </div>
+            <div class="status__items">
+              <div class="status__items__date"><i class="fa-regular fa-calendar-days"></i></div>
+              <div class="status__items__file"><i class="fa-regular fa-file"></i></div>
+              <div class="status__items__comment"><i class="fa-regular fa-comment-dots"></i></div>
+            </div>
           </li>
-          <li>
-            <div class="task__body__title active_status">
+          <li class="status active_status">
+            <div class="task__body__title">
               <div class="title_box">
                 <input type="checkbox" name="checkbox" id="">
                 <h2>type something here...</h2>
@@ -100,9 +105,14 @@
                 <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
               </div>
             </div>
+            <div class="status__items">
+              <!-- <div class="status__items__date"></div> -->
+              <div class="status__items__file"><i class="fa-regular fa-file"></i></div>
+              <div class="status__items__comment"><i class="fa-regular fa-comment-dots"></i></div>
+            </div>
           </li>
-          <li>
-            <div class="task__body__title normal_status">
+          <li class="status">
+            <div class="task__body__title">
               <div class="title_box">
                 <input type="checkbox" name="checkbox" id="">
                 <h2>type something here...</h2>
@@ -112,9 +122,14 @@
                 <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
               </div>
             </div>
+            <div class="status__items">
+              <div class="status__items__date"><i class="fa-regular fa-calendar-days"></i></div>
+              <div class="status__items__file"></div>
+              <div class="status__items__comment"></div>
+            </div>
           </li>
-          <li>
-            <div class="task__body__title normal_status">
+          <li class="status">
+            <div class="task__body__title">
               <div class="title_box">
                 <input type="checkbox" name="checkbox" id="">
                 <h2>type something here...</h2>
@@ -124,9 +139,14 @@
                 <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
               </div>
             </div>
+            <div class="status__items">
+              <!-- <div class="status__items__date"></div> -->
+              <div class="status__items__file"><i class="fa-regular fa-file"></i></div>
+              <div class="status__items__comment"><i class="fa-regular fa-comment-dots"></i></div>
+            </div>
           </li>
-          <li>
-            <div class="task__body__title delete_status">
+          <li class="status delete_status">
+            <div class="task__body__title">
               <div class="title_box">
                 <input type="checkbox" name="checkbox" id="">
                 <h2>type something here...</h2>
