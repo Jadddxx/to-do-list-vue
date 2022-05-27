@@ -10,9 +10,9 @@
   border-radius: 10px;
   background-color: base.$body_bg--light;
 
-  &__body {
-    @include display.flex(column, 0);
+  // &__body {
+  //   @include display.flex(column, 0);
 
-    border-radius: 30px;
-  }
+  //   border-radius: 30px;
+  // }
 }

@@ -55,16 +55,62 @@ ul {
 .list {
   margin-top: 20px;
 }
-.list .status {
+.list__status {
   padding: 20px 32px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.list .status + .status {
+.list__status + .list__status {
   margin-top: 10px;
 }
-.list .status__items {
+.list .task__body__title {
+  padding: 0;
+  border: 1px solid transparent;
+}
+
+.status {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.status_delete {
+  background-color: #f2f2f2;
+}
+.status_delete h2 {
+  color: #757575;
+  text-decoration: line-through;
+}
+
+.status_active {
+  background-color: #FFF2DC;
+}
+.status_active .icon_box .collect_icon i {
+  color: #F5A623;
+}
+.status_active .icon_box .edit_icon i {
+  color: initial;
+}
+.status_active .icon_box .edit_icon i:active {
+  color: #4A90E2;
+}
+
+.list .status_active .icon-card__date i::after {
+  content: "5/14";
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  margin-left: 5px;
+}
+.list .status_normal .icon-card__date i::after {
+  content: "2019/6/18";
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.icon-card {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -74,52 +120,6 @@ ul {
   margin-left: 40px;
   color: #757575;
 }
-.list .status .task__body__title {
-  padding: 0;
-  border: 1px solid transparent;
-}
-
-.list .active_status .status__items__date i::after {
-  content: "5/14";
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  margin: 0;
-  margin-left: 5px;
-}
-
-.list .status__items__date i::after {
-  content: "2019/6/18";
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  margin: 0;
-  margin-left: 5px;
-}
-
-.status {
-  background-color: #f2f2f2;
-  border-radius: 5px;
-}
-
-.delete_status {
-  background-color: #f2f2f2;
-}
-.delete_status h2 {
-  color: #757575;
-  text-decoration: line-through;
-}
-
-.active_status {
-  background-color: #FFF2DC;
-}
-.active_status .icon_box .collect_icon i {
-  color: #F5A623;
-}
-.active_status .icon_box .edit_icon i {
-  color: initial;
-}
-.active_status .icon_box .edit_icon i:active {
-  color: #4A90E2;
-}
 
 .task {
   margin-top: 22px;
@@ -128,12 +128,6 @@ ul {
   gap: 0;
   border-radius: 10px;
   background-color: #f2f2f2;
-}
-.task__body {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-radius: 30px;
 }
 
 .task__body__title {
