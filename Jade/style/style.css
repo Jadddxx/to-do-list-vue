@@ -64,10 +64,6 @@ ul {
 .list__status + .list__status {
   margin-top: 10px;
 }
-.list .task__body__title {
-  padding: 0;
-  border: 1px solid transparent;
-}
 
 .status {
   background-color: #f2f2f2;
@@ -110,6 +106,72 @@ ul {
   margin-left: 5px;
 }
 
+.title-card {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.title-card__main {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.title-card__main input[type=checkbox] {
+  appearance: none;
+  height: 24px;
+  width: 24px;
+  background-color: white;
+  border: 0.15em solid white;
+  display: flex;
+  align-items: center;
+}
+.title-card__main input[type=checkbox]::before {
+  content: "";
+  height: 20px;
+  width: 20px;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  background-color: #4A90E2;
+}
+.title-card__main input[type=checkbox]:checked::before {
+  transform: scale(1);
+}
+.title-card__main h2 {
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+.title-card__icon {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.title-card__icon .collect_icon i, .title-card__icon .edit_icon i {
+  cursor: pointer;
+  font-size: 20px;
+  position: relative;
+  top: 4px;
+}
+.title-card__icon .collect_icon i:active {
+  color: #F5A623;
+}
+.title-card__icon .edit_icon i {
+  color: #4A90E2;
+}
+.title-card__icon .edit_icon i:active {
+  color: initial;
+}
+.title-card_border {
+  padding: 28px 32px;
+  border-bottom: 2px #c8c8c8 solid;
+}
+
 .icon-card {
   display: flex;
   flex-direction: row;
@@ -128,91 +190,28 @@ ul {
   gap: 0;
   border-radius: 10px;
   background-color: #f2f2f2;
+  box-shadow: 1px 2px 10px -4px grey;
 }
 
-.task__body__title {
-  padding: 28px 32px;
-  display: flex;
-  flex-direction: row;
-  gap: 0;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px #c8c8c8 solid;
-}
-.task__body__title .title_box {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-}
-.task__body__title .title_box input[type=checkbox] {
-  appearance: none;
-  height: 24px;
-  width: 24px;
-  background-color: white;
-  border: 0.15em solid white;
-  display: flex;
-  align-items: center;
-}
-.task__body__title .title_box input[type=checkbox]::before {
-  content: "";
-  height: 20px;
-  width: 20px;
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-  transform: scale(0);
-  transform-origin: bottom left;
-  transition: 120ms transform ease-in-out;
-  background-color: #4A90E2;
-}
-.task__body__title .title_box input[type=checkbox]:checked::before {
-  transform: scale(1);
-}
-.task__body__title .title_box h2 {
-  text-transform: capitalize;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  margin: 0;
-}
-.task__body__title .icon_box {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-.task__body__title .icon_box .collect_icon i, .task__body__title .icon_box .edit_icon i {
-  cursor: pointer;
-  font-size: 20px;
-  position: relative;
-  top: 4px;
-}
-.task__body__title .icon_box .collect_icon i:active {
-  color: #F5A623;
-}
-.task__body__title .icon_box .edit_icon i {
-  color: #4A90E2;
-}
-.task__body__title .icon_box .edit_icon i:active {
-  color: initial;
-}
-
-.task__body__detail {
+.task__detail {
   padding: 28px 96px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.task__body__detail .date {
+.task__detail .date {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
-.task__body__detail .date h3 {
+.task__detail .date h3 {
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   margin: 0;
   position: relative;
 }
-.task__body__detail .date h3::before {
+.task__detail .date h3::before {
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
@@ -222,19 +221,19 @@ ul {
   font-family: "Font Awesome 5 Free";
   font-weight: 400;
 }
-.task__body__detail .file {
+.task__detail .file {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
-.task__body__detail .file h3 {
+.task__detail .file h3 {
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   margin: 0;
   position: relative;
 }
-.task__body__detail .file h3::before {
+.task__detail .file h3::before {
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
@@ -244,30 +243,30 @@ ul {
   font-family: "Font Awesome 5 Free";
   font-weight: 300;
 }
-.task__body__detail .file label {
+.task__detail .file label {
   margin-top: 10px;
   color: #c8c8c8;
   cursor: pointer;
 }
-.task__body__detail .file label i {
+.task__detail .file label i {
   font-size: 30px;
 }
-.task__body__detail .file input {
+.task__detail .file input {
   display: none;
 }
-.task__body__detail .comment {
+.task__detail .comment {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
-.task__body__detail .comment h3 {
+.task__detail .comment h3 {
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   margin: 0;
   position: relative;
 }
-.task__body__detail .comment h3::before {
+.task__detail .comment h3::before {
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
@@ -277,12 +276,12 @@ ul {
   font-family: "Font Awesome 5 Free";
   font-weight: 300;
 }
-.task__body__status {
+.task__status {
   display: flex;
   flex-direction: row;
   gap: 0;
 }
-.task__body__status .cancel {
+.task__status .cancel {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -295,25 +294,26 @@ ul {
   margin: 0;
   height: 60px;
   width: 310px;
+  border-radius: 5px;
   border: 1px transparent solid;
   background-color: #ffffff;
   color: #D0021B;
 }
-.task__body__status .cancel p {
+.task__status .cancel p {
   margin: 0;
   display: none;
 }
 @media (min-width: 576px) {
-  .task__body__status .cancel p {
+  .task__status .cancel p {
     display: block;
   }
 }
-.task__body__status .cancel i {
+.task__status .cancel i {
   position: relative;
   top: -2px;
   font-size: 20px;
 }
-.task__body__status .add {
+.task__status .add {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -326,20 +326,21 @@ ul {
   font-size: 20px;
   font-weight: 500;
   margin: 0;
+  border-radius: 5px;
   background-color: #4A90E2;
   color: #ffffff;
   border: 1px transparent solid;
 }
-.task__body__status .add p {
+.task__status .add p {
   margin: 0;
   display: none;
 }
 @media (min-width: 576px) {
-  .task__body__status .add p {
+  .task__status .add p {
     display: block;
   }
 }
-.task__body__status .add i {
+.task__status .add i {
   position: relative;
   top: -3px;
   font-size: 30px;
