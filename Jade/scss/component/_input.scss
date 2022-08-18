@@ -1,80 +1,80 @@
-@use '../base';
-@use '../abstracts';
-@use 'display';
+@use "../base";
+@use "../abstracts";
+@use "display";
 
+@mixin input-title {
+  width: 300px;
+  border: 1px transparent solid;
+  background-color: base.$body_bg--light;
 
-@mixin input__tick {
-    appearance: none;
-    height: 24px;
-    width: 24px;
-  
-    background-color: white;
-    border: 0.15em solid white;
-  
-    display: flex;
-    align-items: center;
-  
-    &::before {
-      content: "";
-      height: 20px;
-      width: 20px;
-      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-  
-      transform: scale(0);
-      transform-origin: bottom left;
-      transition: 120ms transform ease-in-out;
-  
-      background-color: base.$primary;
-    }
-  
-    &:checked::before {
-      transform: scale(1);
-    }
+  &::placeholder {
+    @include base.subtitle;
+    color: black;
+    background-color: base.$body_bg--light;
+  }
 }
 
-.task {
-  .date {
-    &__input {
-      @include display.flex(row, 10px);
-      width: 100%;
+@mixin input-basic {
+  margin-top: 10px;
+  padding: 5px 15px;
+  border: 1px transparent solid;
 
-      input {
-        margin-top: 10px;
-        padding: 5px 15px;
-        border: 1px transparent solid;
-
-        height: 35px;
-        width: 100%;            
-        @include abstracts.breakpoints(768px) {             
-          width: 162px;
-        }
-
-        &::placeholder {
-          @include base.status;
-          color: base.$body_bg;
-        }
-      }
-    }
+  height: 35px;
+  width: 100%;
+  @include abstracts.breakpoints(768px) {
+    width: 162px;
   }
 
-  .comment {
-    textarea {
-      margin-top: 10px;
-      padding: 5px 15px;
-      border: 1px transparent solid;
-      resize: none;
+  &::placeholder {
+    @include base.status;
+    color: base.$body_bg;
+  }
+}
 
-      width: 100%;
-      height: auto;
-      @include abstracts.breakpoints(768px){
-        height: 120px;
-      }
+@mixin text-area-comment {
+  margin-top: 10px;
+  padding: 5px 15px;
+  border: 1px transparent solid;
+  resize: none;
 
-      &::placeholder {
-        text-transform: capitalize;
-        @include base.status;
-        color: base.$body_bg;
-      }
-    }
+  width: 100%;
+  height: auto;
+  @include abstracts.breakpoints(768px) {
+    height: 120px;
+  }
+
+  &::placeholder {
+    text-transform: capitalize;
+    @include base.status;
+    color: base.$body_bg;
+  }
+}
+
+@mixin input__tick {
+  appearance: none;
+  height: 24px;
+  width: 24px;
+
+  background-color: white;
+  border: 0.15em solid white;
+
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    height: 20px;
+    width: 20px;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+
+    background-color: base.$primary;
+  }
+
+  &:checked::before {
+    transform: scale(1);
   }
 }

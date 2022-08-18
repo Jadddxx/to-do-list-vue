@@ -1,10 +1,10 @@
-@forward 'icon';
-@forward 'input';
-@forward 'display';
+@forward "icon";
+@forward "input";
+@forward "display";
 
-@forward 'list';
-@forward 'status';
-@forward 'card';
-@forward 'task';
-@forward 'task__detail';
-@forward 'task__status';
+@forward "list";
+@forward "status";
+@forward "task__head";
+@forward "task__card";
+@forward "task__body";
+@forward "task__status";

@@ -1,165 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <link href="style/style.css" rel="stylesheet">
-</head>
-<body>
-  <header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link href="style/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <div class="container p-0">
+        <nav class="navbar navbar-expand-md p-0">
+          <div class="container-fluid p-0">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >my tasks</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">in progress</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">completed</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
     <div class="container p-0">
-      <nav class="navbar navbar-expand-md p-0">
-        <div class="container-fluid p-0">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">my tasks</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">in progress</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">completed</a>
-              </li>
-            </ul>
+      <main>
+        <div class="task">
+          <div class="task__head task__head_border">
+            <div class="task__head__main">
+              <input type="checkbox" name="checkbox" id="" />
+              <input type="name" placeholder="type something here..." />
+            </div>
+            <div class="task__head__icon">
+              <div class="collect_icon"><i class="fa-regular fa-star"></i></div>
+              <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
+            </div>
+          </div>
+          <div class="task__body">
+            <div class="date">
+              <h3>dateline</h3>
+              <div class="date__input">
+                <input type="text" placeholder="yyyy/mm/dd" />
+                <input type="text" placeholder="hh:mm" />
+              </div>
+            </div>
+            <div class="file">
+              <h3>File</h3>
+              <label for="file"><i class="fa-solid fa-square-plus"></i></label>
+              <input id="file" type="file" name="" accept="" />
+            </div>
+            <div class="comment">
+              <h3>comment</h3>
+              <textarea
+                name=""
+                id="comment"
+                cols="10"
+                rows="4"
+                placeholder="type your memo here..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="task__status">
+            <button class="cancel" type="reset">
+              <i class="fa-regular fa-x"></i>
+              <p>cancel</p>
+            </button>
+            <button class="add" type="submit">
+              <i class="fa-regular fa-plus"></i>
+              <p>add task</p>
+            </button>
           </div>
         </div>
-      </nav>
+        <!-- <div class="list">
+          <ul>
+            <li class="list__status status status_active">
+              <div class="task__head">
+                <div class="task__head__main">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <h2>type something here...</h2>
+                </div>
+                <div class="task__head__icon">
+                  <div class="collect_icon">
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
+                </div>
+              </div>
+              <div class="icon-card">
+                <div class="icon-card__date">
+                  <i class="fa-regular fa-calendar-days"></i>
+                </div>
+                <div class="icon-card__file">
+                  <i class="fa-regular fa-file"></i>
+                </div>
+                <div class="icon-card__comment">
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </li>
+            <li class="list__status status status_active">
+              <div class="task__head">
+                <div class="task__head__main">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <h2>type something here...</h2>
+                </div>
+                <div class="task__head__icon">
+                  <div class="collect_icon">
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
+                </div>
+              </div>
+              <div class="icon-card">
+                <div class="icon-card__file">
+                  <i class="fa-regular fa-file"></i>
+                </div>
+                <div class="icon-card__comment">
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </li>
+            <li class="list__status status status_normal">
+              <div class="task__head">
+                <div class="task__head__main">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <h2>type something here...</h2>
+                </div>
+                <div class="task__head__icon">
+                  <div class="collect_icon">
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
+                </div>
+              </div>
+              <div class="icon-card">
+                <div class="icon-card__date">
+                  <i class="fa-regular fa-calendar-days"></i>
+                </div>
+                <div class="icon-card__file"></div>
+                <div class="icon-card__comment"></div>
+              </div>
+            </li>
+            <li class="list__status status status_normal">
+              <div class="task__head">
+                <div class="task__head__main">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <h2>type something here...</h2>
+                </div>
+                <div class="task__head__icon">
+                  <div class="collect_icon">
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
+                </div>
+              </div>
+              <div class="icon-card">
+                <div class="icon-card__file">
+                  <i class="fa-regular fa-file"></i>
+                </div>
+                <div class="icon-card__comment">
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </li>
+            <li class="list__status status status_delete">
+              <div class="task__head">
+                <div class="task__head__main">
+                  <input type="checkbox" name="checkbox" id="" />
+                  <h2>type something here...</h2>
+                </div>
+                <div class="task__head__icon">
+                  <div class="collect_icon">
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div> -->
+      </main>
+      <footer></footer>
     </div>
-  </header>
-  <div class="container p-0">
-    <main>
-      <div class="task">     
-        <div class="title-card title-card_border">
-          <div class="title-card__main">
-            <input type="checkbox" name="checkbox" id="">
-            <h2>type something here...</h2>
-          </div>
-          <div class="title-card__icon">
-            <div class="collect_icon"><i class="fa-regular fa-star"></i></div>
-            <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
-          </div>
-        </div>
-        <div class="task__detail">
-          <div class="date">
-            <h3>dateline</h3>
-            <div class="date__input">
-              <input type="text" placeholder="yyyy/mm/dd">
-              <input type="text" placeholder="hh:mm">
-            </div>
-          </div>
-          <div class="file">
-            <h3>File</h3>
-            <label for="file"><i class="fa-solid fa-square-plus"></i></label>
-            <input id="file" type="file" name="" accept="">
-          </div>
-          <div class="comment">
-            <h3>comment</h3>
-            <textarea name="" id="comment" cols="10" rows="4" placeholder="type your memo here..."></textarea>
-          </div>
-        </div>
-        <div class="task__status">
-          <button class="cancel" type="reset"><i class="fa-regular fa-x"></i><p>cancel</p></button>
-          <button class="add" type="submit"><i class="fa-regular fa-plus"></i><p>add task</p></button>
-        </div>    
-      </div>
-      <div class="list">
-        <ul>
-          <li class="list__status status status_active">
-            <div class="title-card">
-              <div class="title-card__main">
-                <input type="checkbox" name="checkbox" id="">
-                <h2>type something here...</h2>
-              </div>
-              <div class="title-card__icon">
-                <div class="collect_icon"><i class="fa-solid fa-star"></i></div>
-                <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
-              </div>
-            </div>
-            <div class="icon-card">
-              <div class="icon-card__date"><i class="fa-regular fa-calendar-days"></i></div>
-              <div class="icon-card__file"><i class="fa-regular fa-file"></i></div>
-              <div class="icon-card__comment"><i class="fa-regular fa-comment-dots"></i></div>
-            </div>
-          </li>
-          <li class="list__status status status_active">
-            <div class="title-card">
-              <div class="title-card__main">
-                <input type="checkbox" name="checkbox" id="">
-                <h2>type something here...</h2>
-              </div>
-              <div class="title-card__icon">
-                <div class="collect_icon"><i class="fa-solid fa-star"></i></div>
-                <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
-              </div>
-            </div>
-            <div class="icon-card">
-              <div class="icon-card__file"><i class="fa-regular fa-file"></i></div>
-              <div class="icon-card__comment"><i class="fa-regular fa-comment-dots"></i></div>
-            </div>
-          </li>
-          <li class="list__status status status_normal">
-            <div class="title-card">
-              <div class="title-card__main">
-                <input type="checkbox" name="checkbox" id="">
-                <h2>type something here...</h2>
-              </div>
-              <div class="title-card__icon">
-                <div class="collect_icon"><i class="fa-solid fa-star"></i></div>
-                <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
-              </div>
-            </div>
-            <div class="icon-card">
-              <div class="icon-card__date"><i class="fa-regular fa-calendar-days"></i></div>
-              <div class="icon-card__file"></div>
-              <div class="icon-card__comment"></div>
-            </div>
-          </li>
-          <li class="list__status status status_normal">
-            <div class="title-card">
-              <div class="title-card__main">
-                <input type="checkbox" name="checkbox" id="">
-                <h2>type something here...</h2>
-              </div>
-              <div class="title-card__icon">
-                <div class="collect_icon"><i class="fa-solid fa-star"></i></div>
-                <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
-              </div>
-            </div>
-            <div class="icon-card">
-              <div class="icon-card__file"><i class="fa-regular fa-file"></i></div>
-              <div class="icon-card__comment"><i class="fa-regular fa-comment-dots"></i></div>
-            </div>
-          </li>
-          <li class="list__status status status_delete">
-            <div class="title-card">
-              <div class="title-card__main">
-                <input type="checkbox" name="checkbox" id="">
-                <h2>type something here...</h2>
-              </div>
-              <div class="title-card__icon">
-                <div class="collect_icon"><i class="fa-solid fa-star"></i></div>
-                <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </main>
-    <footer></footer>
-  </div>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://kit.fontawesome.com/aa23c1a952.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
+    <!-- JavaScript Bundle with Popper -->
+    <script type="text/javascript" src="JS/task.js"></script>
+    <script
+      src="https://kit.fontawesome.com/aa23c1a952.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

@@ -1,13 +1,11 @@
-@use '../abstracts';
-@use '../base';
-@use 'input';
-@use 'icon';
-@use 'display';
-
+@use "../abstracts";
+@use "../base";
+@use "input";
+@use "icon";
+@use "display";
 
 .task {
-
-  &__detail {
+  &__body {
     padding: 28px 96px;
     @include display.flex(column, 10px);
 
@@ -19,15 +17,20 @@
         position: relative;
 
         &::before {
-          @include icon.icon_Pseudo(-25px, "\f073" , 400);
-        } 
+          @include icon.icon_Pseudo(-25px, "\f073", 400);
+        }
       }
 
-        &__input {
-          // component/input
+      &__input {
+        @include display.flex(row, 10px);
+        width: 100%;
+
+        input {
+          @include input.input-basic;
+        }
       }
     }
-    
+
     .file {
       @include display.flex(column, 0);
 
@@ -37,7 +40,7 @@
 
         &::before {
           @include icon.icon_Pseudo(-25px, "\f15b", 300);
-        } 
+        }
       }
 
       label {
@@ -63,12 +66,11 @@
 
         &::before {
           @include icon.icon_Pseudo(-25px, "\f4ad", 300);
-        } 
+        }
       }
       textarea {
-        // component/input
+        @include input.text-area-comment;
       }
-    } 
+    }
   }
-  
 }
