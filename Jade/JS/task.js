@@ -2,21 +2,24 @@ const add = document.querySelector(".add");
 const cancel = document.querySelector(".cancel");
 const task = document.querySelector("main .task");
 const list = document.querySelector(".list");
-const todo = document.querySelector(".todo");
+const main = document.querySelector("main");
+const newTaskContainer = document.querySelector(".new-task-container");
 
-add.addEventListener("click", addHandler);
+newTaskContainer.addEventListener("click", addHandler);
 
-function addHandler() {
-  const newTask = document.createElement("div");
-  newTask.classList.add("task");
-  newTask.innerHTML = `<div class="task__head task__head_border">
+function addHandler(e) {
+  const todo = document.querySelector(".new-task-container .todo");
+  if (e.target.classList.contains("add")) {
+    const newTask = document.createElement("div");
+    newTask.classList.add("task");
+    newTask.innerHTML = `<div class="task__head task__head_border">
   <div class="task__head__main">
     <input type="checkbox" name="checkbox" id="checkTodo" />
     <label class="todotitle" for="checkTodo"></label>
   </div>
   <div class="task__head__icon">
-    <div class="collect_icon"><i class="fa-regular fa-star"></i></div>
-    <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
+    <button class="collect_icon"><i class="fa-regular fa-star"></i></button>
+    <button class="edit_icon"><i class="fa-solid fa-pen"></i></button>
   </div>
 </div>
 <div class="task__body">
@@ -48,10 +51,15 @@ function addHandler() {
     <i class="fa-regular fa-x"></i>
     <p>delete</p>
   </button>
+  <button class="add" type="reset">
+  <i class="fa-regular fa-plus"></i>
+  <p>save</p>
+  </button>
 </div>`;
-  newTask.childNodes[0].childNodes[1].childNodes[3].textContent = todo.value;
-
-  list.appendChild(newTask);
+    console.log(todo.value);
+    newTask.childNodes[0].childNodes[1].childNodes[3].textContent = todo.value;
+    list.appendChild(newTask);
+  }
 }
 
 // 必須用事件代理人，因為這樣動態新增的才可以吃到

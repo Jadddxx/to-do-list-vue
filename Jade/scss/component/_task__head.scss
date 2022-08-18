@@ -2,6 +2,7 @@
 @use "../base";
 @use "input";
 @use "icon";
+@use "button";
 @use "display";
 
 .task {
@@ -27,10 +28,11 @@
     }
 
     &__icon {
-      @include display.flex(row, 20px);
+      @include display.flex(row, 0);
 
       .collect_icon,
       .edit_icon {
+        @include button.button--transparent;
         i {
           @include icon.icon_basic;
           @include icon.icon_justify(4px);

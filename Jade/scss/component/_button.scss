@@ -9,6 +9,7 @@
   @include display.flex-justify(center, center);
 
   height: 60px;
+  width: 310px;
 
   @include base.subtitle;
 
@@ -37,6 +38,7 @@
   @include base.subtitle;
 
   height: 60px;
+  width: 310px;
 
   border-radius: 5px;
   border: 1px transparent solid;
@@ -54,4 +56,8 @@
     @include icon.icon_justify(-2px);
     font-size: 20px;
   }
+}
+
+@mixin button--transparent {
+  border: 1px solid transparent;
 }

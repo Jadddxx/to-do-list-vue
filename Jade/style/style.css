@@ -17,8 +17,74 @@ ul {
   font-weight: 500;
   margin: 0;
 }
+.list .task__status {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+}
+.list .task__status .add {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 310px;
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  border-radius: 5px;
+  background-color: #4A90E2;
+  color: #ffffff;
+  border: 1px transparent solid;
+}
+.list .task__status .add p {
+  margin: 0;
+  display: none;
+}
+@media (min-width: 576px) {
+  .list .task__status .add p {
+    display: block;
+  }
+}
+.list .task__status .add i {
+  position: relative;
+  top: -3px;
+  font-size: 30px;
+}
 .list .task__status .cancel {
-  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  height: 60px;
+  width: 310px;
+  border-radius: 5px;
+  border: 1px transparent solid;
+  background-color: #ffffff;
+  color: #D0021B;
+}
+.list .task__status .cancel p {
+  margin: 0;
+  display: none;
+}
+@media (min-width: 576px) {
+  .list .task__status .cancel p {
+    display: block;
+  }
+}
+.list .task__status .cancel i {
+  position: relative;
+  top: -2px;
+  font-size: 20px;
 }
 .list__status {
   padding: 20px 32px;
@@ -95,7 +161,11 @@ ul {
 .task__head__icon {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 0;
+}
+.task__head__icon .collect_icon,
+.task__head__icon .edit_icon {
+  border: 1px solid transparent;
 }
 .task__head__icon .collect_icon i,
 .task__head__icon .edit_icon i {
@@ -284,6 +354,7 @@ ul {
   font-weight: 500;
   margin: 0;
   height: 60px;
+  width: 310px;
   border-radius: 5px;
   border: 1px transparent solid;
   background-color: #ffffff;
@@ -311,6 +382,7 @@ ul {
   justify-content: center;
   align-items: center;
   height: 60px;
+  width: 310px;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
@@ -334,6 +406,47 @@ ul {
   position: relative;
   top: -3px;
   font-size: 30px;
+}
+
+.task-add-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  padding: 0 32px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: white;
+}
+.task-add-container .task-add__button {
+  background-color: transparent;
+  border: 1px solid transparent;
+  height: 24px;
+  width: 24px;
+}
+.task-add-container .task-add__button i {
+  position: relative;
+  top: -10px;
+  font-size: 30px;
+  left: -5px;
+  color: #c8c8c8;
+}
+.task-add-container input {
+  margin-top: 0;
+  padding: 0;
+  font-size: 30px;
+  border: 1px transparent solid;
+  height: 50px;
+  width: 100%;
+}
+.task-add-container input::placeholder {
+  text-transform: capitalize;
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #c8c8c8;
 }
 
 header {

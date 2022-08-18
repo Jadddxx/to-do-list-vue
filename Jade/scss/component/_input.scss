@@ -2,6 +2,19 @@
 @use "../abstracts";
 @use "display";
 
+@mixin input-add {
+  border: 1px transparent solid;
+
+  height: 50px;
+  width: 100%;
+
+  &::placeholder {
+    text-transform: capitalize;
+    @include base.title;
+    color: base.$body_bg;
+  }
+}
+
 @mixin input-title {
   width: 300px;
   border: 1px transparent solid;

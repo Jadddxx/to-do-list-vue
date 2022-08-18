@@ -57,7 +57,14 @@
     </header>
     <div class="container p-0">
       <main>
-        <form class="task">
+        <div class="task-add-container">
+          <button class="task-add__button" type="submit">
+            <i class="fa-regular fa-plus"></i>
+          </button>
+          <input type="text" placeholder="add task" />
+        </div>
+        <div class="new-task-container"></div>
+        <!-- <form class="task">
           <div class="task__head task__head_border">
             <div class="task__head__main">
               <input type="checkbox" name="checkbox" id="" />
@@ -68,8 +75,10 @@
               />
             </div>
             <div class="task__head__icon">
-              <div class="collect_icon"><i class="fa-regular fa-star"></i></div>
-              <div class="edit_icon"><i class="fa-solid fa-pen"></i></div>
+              <button class="collect_icon">
+                <i class="fa-regular fa-star"></i>
+              </button>
+              <button class="edit_icon"><i class="fa-solid fa-pen"></i></button>
             </div>
           </div>
           <div class="task__body">
@@ -106,7 +115,7 @@
               <p>add task</p>
             </button>
           </div>
-        </form>
+        </form> -->
         <div class="list"></div>
         <!-- <div class="list">
           <ul>
@@ -221,6 +230,7 @@
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script type="text/javascript" src="JS/task.js"></script>
+    <script type="text/javascript" src="JS/addTask.js"></script>
     <script
       src="https://kit.fontawesome.com/aa23c1a952.js"
       crossorigin="anonymous"

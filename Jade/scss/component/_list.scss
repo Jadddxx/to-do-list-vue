@@ -1,5 +1,6 @@
 @use "../base";
 @use "display";
+@use "button";
 
 // layout
 
@@ -16,8 +17,12 @@
     }
 
     &__status {
+      @include display.flex(row, 0);
+      .add {
+        @include button.button--success;
+      }
       .cancel {
-        width: 100%;
+        @include button.button--fail;
       }
     }
   }
