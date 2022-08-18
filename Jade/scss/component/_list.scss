@@ -1,19 +1,33 @@
-@use '../base';
-@use 'display';
+@use "../base";
+@use "display";
 
 // layout
 
 .list {
   margin-top: 20px;
 
+  .task {
+    &__head {
+      &__main {
+        label {
+          @include base.subtitle;
+        }
+      }
+    }
+
+    &__status {
+      .cancel {
+        width: 100%;
+      }
+    }
+  }
+
   &__status {
     padding: 20px 32px;
     @include display.flex(column, 10px);
-    
-    & + .list__status {    
+
+    & + .list__status {
       margin-top: 10px;
     }
   }
 }
-
-

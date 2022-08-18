@@ -1,57 +1,53 @@
-@use '../base';
+@use "../base";
 
+// .status {
+//   background-color: base.$body_bg--light;
+//   border-radius: 5px;
+// }
 
-.status {
-  background-color: base.$body_bg--light;
-  border-radius: 5px;
-}
+// .status_delete {
+//   background-color: base.$body_bg--light;
+//   h2 {
+//     color: base.$body_bg--dark;
+//     text-decoration: line-through;
+//   }
+// }
 
-.status_delete {
-  background-color: base.$body_bg--light;
-  h2 {
-    color: base.$body_bg--dark;
-    text-decoration:line-through;
-  }
-  // input:checked {
-  //   transform: scale(1);
-  // }
-}
+// .status_active {
+//   background-color: base.$form_bg--light;
 
-.status_active {
-  background-color: base.$form_bg--light;
-  
-  .icon_box {
-    .collect_icon {
-      i {
-        color: base.$form_bg--dark;
-      }
-    }
-    .edit_icon {
-      i {
-        color: initial;
-  
-        &:active {
-          color: base.$primary;
-        }
-      }
-    }
-  }
-}
+//   .icon_box {
+//     .collect_icon {
+//       i {
+//         color: base.$form_bg--dark;
+//       }
+//     }
+//     .edit_icon {
+//       i {
+//         color: initial;
 
-.list {
-  .status_active .icon-card__date{
-    i::after {
-      content: "5/14";
-      @include base.status;
-      margin-left: 5px;
-    } 
-  } 
-  
-  .status_normal .icon-card__date {
-    i::after {
-      content: "2019/6/18";
-      @include base.status;
-      margin-left: 5px;
-    }
-  }
-}
+//         &:active {
+//           color: base.$primary;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .list {
+//   .status_active .icon-card__date {
+//     i::after {
+//       content: "5/14";
+//       @include base.status;
+//       margin-left: 5px;
+//     }
+//   }
+
+//   .status_normal .icon-card__date {
+//     i::after {
+//       content: "2019/6/18";
+//       @include base.status;
+//       margin-left: 5px;
+//     }
+//   }
+// }

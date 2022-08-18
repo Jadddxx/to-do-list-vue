@@ -57,11 +57,15 @@
     </header>
     <div class="container p-0">
       <main>
-        <div class="task">
+        <form class="task">
           <div class="task__head task__head_border">
             <div class="task__head__main">
               <input type="checkbox" name="checkbox" id="" />
-              <input type="name" placeholder="type something here..." />
+              <input
+                type="name"
+                class="todo"
+                placeholder="type something here..."
+              />
             </div>
             <div class="task__head__icon">
               <div class="collect_icon"><i class="fa-regular fa-star"></i></div>
@@ -102,7 +106,8 @@
               <p>add task</p>
             </button>
           </div>
-        </div>
+        </form>
+        <div class="list"></div>
         <!-- <div class="list">
           <ul>
             <li class="list__status status status_active">

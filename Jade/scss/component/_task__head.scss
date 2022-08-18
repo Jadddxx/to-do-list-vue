@@ -11,12 +11,18 @@
 
     &__main {
       @include display.flex(row, 15px);
+      align-items: center;
 
       input[type="checkbox"] {
         @include input.input__tick;
       }
+
+      input[type="checkbox"]:checked + label {
+        text-decoration: line-through;
+      }
       input[type="name"] {
         @include input.input-title;
+        @include base.title;
       }
     }
 

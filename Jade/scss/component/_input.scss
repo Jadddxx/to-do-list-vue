@@ -11,6 +11,7 @@
     @include base.subtitle;
     color: black;
     background-color: base.$body_bg--light;
+    @include base.title;
   }
 }
 

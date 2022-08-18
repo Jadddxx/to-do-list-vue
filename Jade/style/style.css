@@ -10,6 +10,16 @@ ul {
 .list {
   margin-top: 20px;
 }
+.list .task__head__main label {
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+.list .task__status .cancel {
+  width: 100%;
+}
 .list__status {
   padding: 20px 32px;
   display: flex;
@@ -18,47 +28,6 @@ ul {
 }
 .list__status + .list__status {
   margin-top: 10px;
-}
-
-.status {
-  background-color: #f2f2f2;
-  border-radius: 5px;
-}
-
-.status_delete {
-  background-color: #f2f2f2;
-}
-.status_delete h2 {
-  color: #757575;
-  text-decoration: line-through;
-}
-
-.status_active {
-  background-color: #FFF2DC;
-}
-.status_active .icon_box .collect_icon i {
-  color: #F5A623;
-}
-.status_active .icon_box .edit_icon i {
-  color: initial;
-}
-.status_active .icon_box .edit_icon i:active {
-  color: #4A90E2;
-}
-
-.list .status_active .icon-card__date i::after {
-  content: "5/14";
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  margin: 0;
-  margin-left: 5px;
-}
-.list .status_normal .icon-card__date i::after {
-  content: "2019/6/18";
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  margin: 0;
-  margin-left: 5px;
 }
 
 .task__head {
@@ -72,6 +41,7 @@ ul {
   display: flex;
   flex-direction: row;
   gap: 15px;
+  align-items: center;
 }
 .task__head__main input[type=checkbox] {
   appearance: none;
@@ -95,10 +65,18 @@ ul {
 .task__head__main input[type=checkbox]:checked::before {
   transform: scale(1);
 }
+.task__head__main input[type=checkbox]:checked + label {
+  text-decoration: line-through;
+}
 .task__head__main input[type=name] {
   width: 300px;
   border: 1px transparent solid;
   background-color: #f2f2f2;
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
 }
 .task__head__main input[type=name]::placeholder {
   text-transform: capitalize;
@@ -108,6 +86,11 @@ ul {
   margin: 0;
   color: black;
   background-color: #f2f2f2;
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
 }
 .task__head__icon {
   display: flex;
@@ -289,6 +272,7 @@ ul {
   gap: 0;
 }
 .task__status .cancel {
+  width: 310px;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -300,7 +284,6 @@ ul {
   font-weight: 500;
   margin: 0;
   height: 60px;
-  width: 310px;
   border-radius: 5px;
   border: 1px transparent solid;
   background-color: #ffffff;
@@ -321,13 +304,13 @@ ul {
   font-size: 20px;
 }
 .task__status .add {
+  width: 310px;
   display: flex;
   flex-direction: row;
   gap: 10px;
   justify-content: center;
   align-items: center;
   height: 60px;
-  width: 310px;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 20px;

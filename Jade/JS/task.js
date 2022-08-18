@@ -1,7 +1,8 @@
 const add = document.querySelector(".add");
 const cancel = document.querySelector(".cancel");
-const main = document.querySelector("main");
-const task = document.querySelector(".task");
+const task = document.querySelector("main .task");
+const list = document.querySelector(".list");
+const todo = document.querySelector(".todo");
 
 add.addEventListener("click", addHandler);
 
@@ -10,8 +11,8 @@ function addHandler() {
   newTask.classList.add("task");
   newTask.innerHTML = `<div class="task__head task__head_border">
   <div class="task__head__main">
-    <input type="checkbox" name="checkbox" id="" />
-    <input type="name" placeholder="type something here..." />
+    <input type="checkbox" name="checkbox" id="checkTodo" />
+    <label class="todotitle" for="checkTodo"></label>
   </div>
   <div class="task__head__icon">
     <div class="collect_icon"><i class="fa-regular fa-star"></i></div>
@@ -45,17 +46,18 @@ function addHandler() {
 <div class="task__status">
   <button class="cancel" type="reset">
     <i class="fa-regular fa-x"></i>
-    <p>cancel</p>
+    <p>delete</p>
   </button>
 </div>`;
-  main.appendChild(newTask);
+  newTask.childNodes[0].childNodes[1].childNodes[3].textContent = todo.value;
+
+  list.appendChild(newTask);
 }
 
 // 必須用事件代理人，因為這樣動態新增的才可以吃到
-main.addEventListener("click", cancelHandler);
+list.addEventListener("click", cancelHandler);
 
 function cancelHandler(e) {
-  console.log(e.target);
   if (e.target.classList.contains("cancel")) {
     e.target.parentElement.parentElement.remove();
   }
