@@ -3,7 +3,7 @@
 @use "display";
 @use "icon";
 
-.task-add-container {
+.task-input {
   @include display.flex(row, 15px);
   align-items: center;
   padding: 0 32px;
@@ -11,13 +11,13 @@
   border-radius: 5px;
   background-color: white;
 
-  .task-add__button {
+  .task-input__button {
     background-color: transparent;
     border: 1px solid transparent;
     height: 24px;
     width: 24px;
     i {
-      @include icon.icon_justify(-10px);
+      @include icon.icon_justify(-5px);
       font-size: 30px;
       left: -5px;
       color: base.$body_bg;

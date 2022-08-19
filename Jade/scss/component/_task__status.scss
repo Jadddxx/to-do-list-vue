@@ -5,12 +5,12 @@
   &__status {
     @include display.flex(row, 0);
 
-    .cancel {
+    .delete-button {
       width: 310px;
       @include button.button--fail;
     }
 
-    .add {
+    .save-button {
       width: 310px;
       @include button.button--success;
     }

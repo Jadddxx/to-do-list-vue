@@ -1,11 +1,11 @@
-const taskAddButton = document.querySelector(".task-add__button");
+const taskAddButton = document.querySelector(".task-input__button");
 
 taskAddButton.addEventListener("click", addTaskHandler);
 
 function addTaskHandler() {
-  const newForm = document.createElement("form");
-  newForm.classList.add("task");
-  newForm.innerHTML = `<div class="task__head task__head_border">
+  const newTask = document.createElement("form");
+  newTask.classList.add("task");
+  newTask.innerHTML = `<div class="task__head task__head_border">
   <div class="task__head__main">
     <input type="checkbox" name="checkbox"/>
     <input
@@ -15,10 +15,10 @@ function addTaskHandler() {
     />
   </div>
   <div class="task__head__icon">
-    <button class="collect_icon">
+    <button type="button" class="collect-button">
       <i class="fa-regular fa-star"></i>
     </button>
-    <button class="edit_icon"><i class="fa-solid fa-pen"></i></button>
+    <button type="button" class="edit-button"><i class="fa-solid fa-pen"></i></button>
   </div>
 </div>
 <div class="task__body">
@@ -46,15 +46,16 @@ function addTaskHandler() {
   </div>
 </div>
 <div class="task__status">
-  <button class="cancel" type="reset">
+  <button class="delete-button" type="button">
     <i class="fa-regular fa-x"></i>
-    <p>cancel</p>
+    <p>delete</p>
   </button>
-  <button class="add" type="button">
+  <button class="save-button" type="button">
     <i class="fa-regular fa-plus"></i>
-    <p>add task</p>
+    <p>save</p>
   </button>
+
 </div>`;
 
-  newTaskContainer.appendChild(newForm);
+  list.appendChild(newTask);
 }

@@ -1,0 +1,13 @@
+@use "../base";
+
+.collected {
+  background-color: base.$form_bg--dark;
+}
+
+.folded {
+  display: none;
+}
+
+.open-border {
+  border-bottom: 2px base.$body_bg solid;
+}

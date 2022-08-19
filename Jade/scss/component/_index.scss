@@ -2,11 +2,9 @@
 @forward "input";
 @forward "button";
 @forward "display";
-
-@forward "list";
-@forward "status";
 @forward "task__head";
-@forward "task__card";
+@forward "task";
 @forward "task__body";
 @forward "task__status";
-@forward "task-add";
+@forward "task__input";
+@forward "task--style";
