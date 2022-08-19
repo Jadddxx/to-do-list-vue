@@ -8,14 +8,15 @@ const newTaskContainer = document.querySelector(".new-task-container");
 newTaskContainer.addEventListener("click", addHandler);
 
 function addHandler(e) {
-  const todo = document.querySelector(".new-task-container .todo");
+  // 必須在newTaskContainer裡面的，不然在外面當時根本還沒產生，就讀不到
+  const title = document.querySelector(".task__title");
   if (e.target.classList.contains("add")) {
     const newTask = document.createElement("div");
     newTask.classList.add("task");
     newTask.innerHTML = `<div class="task__head task__head_border">
   <div class="task__head__main">
-    <input type="checkbox" name="checkbox" id="checkTodo" />
-    <label class="todotitle" for="checkTodo"></label>
+    <input type="checkbox" name="checkbox" id="check-todo" />
+    <label class="todo-title" for="check-todo"></label>
   </div>
   <div class="task__head__icon">
     <button class="collect_icon"><i class="fa-regular fa-star"></i></button>
@@ -49,15 +50,14 @@ function addHandler(e) {
 <div class="task__status">
   <button class="cancel" type="reset">
     <i class="fa-regular fa-x"></i>
-    <p>delete</p>
+    <p class="cancel-p">delete</p>
   </button>
-  <button class="add" type="reset">
+  <button class="add" type="button">
   <i class="fa-regular fa-plus"></i>
   <p>save</p>
   </button>
 </div>`;
-    console.log(todo.value);
-    newTask.childNodes[0].childNodes[1].childNodes[3].textContent = todo.value;
+    newTask.childNodes[0].childNodes[1].childNodes[3].textContent = title.value;
     list.appendChild(newTask);
   }
 }
@@ -66,11 +66,12 @@ function addHandler(e) {
 list.addEventListener("click", cancelHandler);
 
 function cancelHandler(e) {
-  if (e.target.classList.contains("cancel")) {
-    e.target.parentElement.parentElement.remove();
+  if (
+    e.target.classList.contains("cancel") ||
+    e.target.classList.contains("fa-regular") ||
+    e.target.classList.contains("cancel-p")
+  ) {
+    list.removeChild(e.target.closest(".task"));
+    // e.target.parentElement.parentElement.remove();
   }
-
-  // if (e.target.classList.contains("fa-regular")) {
-  //   e.target.parentElement.parentElement.remove();
-  // }
 }

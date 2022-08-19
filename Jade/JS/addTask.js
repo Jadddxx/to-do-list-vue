@@ -7,10 +7,10 @@ function addTaskHandler() {
   newForm.classList.add("task");
   newForm.innerHTML = `<div class="task__head task__head_border">
   <div class="task__head__main">
-    <input type="checkbox" name="checkbox" id="" />
+    <input type="checkbox" name="checkbox"/>
     <input
       type="name"
-      class="todo"
+      class="task__title"
       placeholder="type something here..."
     />
   </div>
@@ -50,7 +50,7 @@ function addTaskHandler() {
     <i class="fa-regular fa-x"></i>
     <p>cancel</p>
   </button>
-  <button class="add" type="submit">
+  <button class="add" type="button">
     <i class="fa-regular fa-plus"></i>
     <p>add task</p>
   </button>
