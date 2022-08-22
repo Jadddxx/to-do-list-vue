@@ -18,7 +18,7 @@ ul {
 .task__head__main {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 10px;
   align-items: center;
 }
 .task__head__main input[type=checkbox] {
@@ -38,7 +38,7 @@ ul {
   transform: scale(0);
   transform-origin: bottom left;
   transition: 120ms transform ease-in-out;
-  background-color: #4A90E2;
+  background-color: #4a90e2;
 }
 .task__head__main input[type=checkbox]:checked::before {
   transform: scale(1);
@@ -49,12 +49,14 @@ ul {
 .task__head__main input[type=name] {
   width: 300px;
   border: 1px transparent solid;
-  background-color: #f2f2f2;
+  background-color: transparent;
+  padding: 0 5px;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 600;
   margin: 0;
+  background-color: transparent;
 }
 .task__head__main input[type=name]::placeholder {
   text-transform: capitalize;
@@ -63,7 +65,7 @@ ul {
   font-weight: 500;
   margin: 0;
   color: black;
-  background-color: #f2f2f2;
+  background-color: transparent;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
@@ -78,6 +80,7 @@ ul {
 .task__head__icon .collect-button,
 .task__head__icon .edit-button {
   border: 1px solid transparent;
+  background-color: transparent;
 }
 .task__head__icon .collect-button i,
 .task__head__icon .edit-button i {
@@ -87,10 +90,10 @@ ul {
   top: 4px;
 }
 .task__head__icon .collect-button i:active {
-  color: #F5A623;
+  color: #f5a623;
 }
 .task__head__icon .edit-button i {
-  color: #4A90E2;
+  color: #4a90e2;
 }
 .task__head__icon .edit-button i:active {
   color: initial;
@@ -270,7 +273,7 @@ ul {
   border-radius: 5px;
   border: 1px transparent solid;
   background-color: #ffffff;
-  color: #D0021B;
+  color: #d0021b;
 }
 .task__status .delete-button p {
   margin: 0;
@@ -301,7 +304,7 @@ ul {
   font-weight: 500;
   margin: 0;
   border-radius: 5px;
-  background-color: #4A90E2;
+  background-color: #4a90e2;
   color: #ffffff;
   border: 1px transparent solid;
 }
@@ -323,9 +326,9 @@ ul {
 .task-input {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 10px;
   align-items: center;
-  padding: 0 32px;
+  padding: 9px 32px;
   margin-top: 20px;
   border-radius: 5px;
   background-color: white;
@@ -338,9 +341,9 @@ ul {
 }
 .task-input .task-input__button i {
   position: relative;
-  top: -5px;
-  font-size: 30px;
-  left: -5px;
+  top: -18px;
+  font-size: 50px;
+  left: -9px;
   color: #c8c8c8;
 }
 .task-input input {
@@ -348,21 +351,21 @@ ul {
   padding: 0;
   font-size: 30px;
   border: 1px transparent solid;
-  height: 50px;
   width: 100%;
+  padding: 0 5px;
 }
 .task-input input::placeholder {
   text-transform: capitalize;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 300;
   margin: 0;
   color: #c8c8c8;
 }
 
-.collected {
-  background-color: #F5A623;
+.collect-mode {
+  background-color: #fff2dc;
 }
 
 .folded {
@@ -374,11 +377,11 @@ ul {
 }
 
 header {
-  background-color: #4A90E2;
+  background-color: #4a90e2;
 }
 
 body {
-  background-color: #E1E1E1;
+  background-color: #e1e1e1;
 }
 
 @media (min-width: 768px) {
@@ -388,7 +391,7 @@ body {
 }
 
 .container .navbar {
-  background-color: #4A90E2;
+  background-color: #4a90e2;
 }
 .container .navbar .container-fluid button {
   padding: 10px;
@@ -408,12 +411,12 @@ body {
 }
 @media (min-width: 768px) {
   .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link.active {
-    border-bottom: 3px solid #00408B;
+    border-bottom: 3px solid #00408b;
   }
 }
 .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link {
   padding: 15px 20px;
-  color: #00408B;
+  color: #00408b;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
@@ -431,7 +434,7 @@ body {
 }
 @media (min-width: 768px) {
   .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
-    border-bottom: 3px solid #00408B;
+    border-bottom: 3px solid #00408b;
   }
 }
 

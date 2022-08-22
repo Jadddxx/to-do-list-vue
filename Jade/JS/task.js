@@ -5,10 +5,7 @@ const list = document.querySelector(".list");
 list.addEventListener("click", clickHandler);
 
 function clickHandler(e) {
-  const taskHead = document.querySelector(".task__head");
-  const taskTitle = document.querySelector(".task__title");
-  const taskBody = document.querySelector(".task__body");
-  const taskStatus = document.querySelector(".task__status");
+  let targetParent = e.target.closest(".task");
 
   // delete
   if (
@@ -22,23 +19,13 @@ function clickHandler(e) {
 
   // save
   if (e.target.classList.contains("save-button")) {
-    e.target.closest(".task").childNodes[2].classList.add("folded"); //task_body
-    e.target.closest(".task").childNodes[4].classList.add("folded"); //task_status
-    e.target
-      .closest(".task")
-      .childNodes[0].classList.remove("task__head_border"); //task_head
-    e.target
-      .closest(".task")
-      .childNodes[0].childNodes[1].childNodes[3].setAttribute(
-        "disabled",
-        "disabled"
-      );
-
-    // taskBody.classList.add("folded");
-    // taskStatus.classList.add("folded");
-    // taskTitle.setAttribute("disabled", "disabled");
-    // taskHead.classList.remove("task__head_border");
-    // taskBody.classList.add("folded");
+    targetParent.children[1].classList.add("folded"); //task_body
+    targetParent.children[2].classList.add("folded"); //task_status
+    targetParent.children[0].classList.remove("task__head_border"); //task_head
+    targetParent.children[0].children[0].children[1].setAttribute(
+      "disabled",
+      "disabled"
+    );
   }
 
   // edit
@@ -46,19 +33,21 @@ function clickHandler(e) {
     e.target.classList.contains("edit-button") ||
     e.target.classList.contains("fa-pen")
   ) {
-    e.target.closest(".task").childNodes[2].classList.toggle("folded"); //task_body
-    e.target.closest(".task").childNodes[4].classList.toggle("folded"); //task_status
-    e.target
-      .closest(".task")
-      .childNodes[0].classList.toggle("task__head_border"); //task_head
-    e.target
-      .closest(".task")
-      .childNodes[0].childNodes[1].childNodes[3].removeAttribute("disabled"); //按壓edit關起來時不會增加input disable
+    targetParent.children[1].classList.toggle("folded"); //task_body
+    targetParent.children[2].classList.toggle("folded"); //task_status
+    targetParent.children[0].classList.toggle("task__head_border"); //task_head
+    targetParent.children[0].children[0].children[1].removeAttribute(
+      "disabled"
+    );
+    //按壓edit關起來時不會增加input disable
+  }
 
-    // taskBody.classList.toggle("folded");
-    // taskStatus.classList.toggle("folded");
-    // taskTitle.removeAttribute("disabled");
-
-    // taskHead.classList.add("task__head_border");
+  // collect
+  if (
+    e.target.classList.contains("collect-button") ||
+    e.target.classList.contains("fa-star")
+  ) {
+    targetParent.classList.toggle("collect-mode"); //task
+    // targetParent.children[1].classList.toggle("collect-mode"); //task_body
   }
 }

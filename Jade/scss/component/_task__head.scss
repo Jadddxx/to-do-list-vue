@@ -12,7 +12,7 @@
     @include display.flex-justify(space-between, center);
 
     &__main {
-      @include display.flex(row, 15px);
+      @include display.flex(row, 10px);
       align-items: center;
 
       input[type="checkbox"] {
@@ -26,6 +26,7 @@
       input[type="name"] {
         @include input.input-title;
         @include base.title;
+        background-color: transparent;
       }
     }
 
@@ -44,7 +45,7 @@
       .collect-button {
         i {
           &:active {
-            color: base.$form_bg--dark;
+            color: base.$collect_color;
           }
         }
       }

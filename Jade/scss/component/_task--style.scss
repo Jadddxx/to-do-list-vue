@@ -1,7 +1,7 @@
 @use "../base";
 
-.collected {
-  background-color: base.$form_bg--dark;
+.collect-mode {
+  background-color: base.$collect_bg;
 }
 
 .folded {

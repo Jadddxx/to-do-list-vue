@@ -4,9 +4,9 @@
 @use "icon";
 
 .task-input {
-  @include display.flex(row, 15px);
+  @include display.flex(row, 10px);
   align-items: center;
-  padding: 0 32px;
+  padding: 9px 32px;
   margin-top: 20px;
   border-radius: 5px;
   background-color: white;
@@ -17,9 +17,9 @@
     height: 24px;
     width: 24px;
     i {
-      @include icon.icon_justify(-5px);
-      font-size: 30px;
-      left: -5px;
+      @include icon.icon_justify(-18px);
+      font-size: 50px;
+      left: -9px;
       color: base.$body_bg;
     }
   }

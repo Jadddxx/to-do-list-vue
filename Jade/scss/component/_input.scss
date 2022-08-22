@@ -4,13 +4,13 @@
 
 @mixin input-add {
   border: 1px transparent solid;
-
-  height: 50px;
   width: 100%;
+
+  padding: 0 5px;
 
   &::placeholder {
     text-transform: capitalize;
-    @include base.title;
+    @include base.add-title;
     color: base.$body_bg;
   }
 }
@@ -18,12 +18,14 @@
 @mixin input-title {
   width: 300px;
   border: 1px transparent solid;
-  background-color: base.$body_bg--light;
+  background-color: transparent;
+
+  padding: 0 5px;
 
   &::placeholder {
     @include base.subtitle;
     color: black;
-    background-color: base.$body_bg--light;
+    background-color: transparent;
     @include base.title;
   }
 }
