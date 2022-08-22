@@ -3,6 +3,8 @@ const taskAddButton = document.querySelector(".task-input__button");
 taskAddButton.addEventListener("click", addTaskHandler);
 
 function addTaskHandler() {
+  const taskInput = document.querySelector(".task-input input[type=text]");
+
   const newTask = document.createElement("form");
   newTask.classList.add("task");
   newTask.innerHTML = `<div class="task__head task__head_border">
@@ -12,13 +14,16 @@ function addTaskHandler() {
       type="name"
       class="task__title"
       placeholder="type something here..."
+      value="${taskInput.value}"
     />
   </div>
   <div class="task__head__icon">
     <button type="button" class="collect-button">
       <i class="fa-regular fa-star"></i>
     </button>
-    <button type="button" class="edit-button"><i class="fa-solid fa-pen"></i></button>
+    <button type="button" class="edit-button">
+      <i class="fa-solid fa-pen" > </i >
+    </button>
   </div>
 </div>
 <div class="task__body">
@@ -54,8 +59,7 @@ function addTaskHandler() {
     <i class="fa-regular fa-plus"></i>
     <p>save</p>
   </button>
-
 </div>`;
-
+  // newTask.childNodes[0].childNodes[1].childNodes[3].value = taskInput.value;
   list.appendChild(newTask);
 }

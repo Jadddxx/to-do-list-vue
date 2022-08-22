@@ -17,11 +17,12 @@
 
       input[type="checkbox"] {
         @include input.input__tick;
+
+        &:checked + input[type="name"] {
+          text-decoration: line-through;
+        }
       }
 
-      input[type="checkbox"]:checked + label {
-        text-decoration: line-through;
-      }
       input[type="name"] {
         @include input.input-title;
         @include base.title;

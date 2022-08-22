@@ -43,7 +43,7 @@ ul {
 .task__head__main input[type=checkbox]:checked::before {
   transform: scale(1);
 }
-.task__head__main input[type=checkbox]:checked + label {
+.task__head__main input[type=checkbox]:checked + input[type=name] {
   text-decoration: line-through;
 }
 .task__head__main input[type=name] {
