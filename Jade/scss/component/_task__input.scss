@@ -3,15 +3,16 @@
 @use "display";
 @use "icon";
 
-.task-input {
+.task-add {
   @include display.flex(row, 10px);
   align-items: center;
   padding: 9px 32px;
   margin-top: 20px;
   border-radius: 5px;
   background-color: white;
+  border: 2px base.$body_bg solid;
 
-  .task-input__button {
+  button[type="submit"] {
     background-color: transparent;
     border: 1px solid transparent;
     height: 24px;
@@ -23,10 +24,11 @@
       color: base.$body_bg;
     }
   }
-  input {
+
+  input[type="text"] {
+    @include input.input-add;
     margin-top: 0;
     padding: 0;
     font-size: 30px;
-    @include input.input-add;
   }
 }

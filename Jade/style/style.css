@@ -4,7 +4,7 @@ a {
 
 ul {
   padding: 0;
-  list-style: none;
+  task-list-style: none;
 }
 
 .task__head {
@@ -47,7 +47,7 @@ ul {
   text-decoration: line-through;
 }
 .task__head__main input[type=name] {
-  width: 300px;
+  width: 360px;
   border: 1px transparent solid;
   background-color: transparent;
   padding: 0 5px;
@@ -323,7 +323,7 @@ ul {
   font-size: 30px;
 }
 
-.task-input {
+.task-add {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -332,29 +332,30 @@ ul {
   margin-top: 20px;
   border-radius: 5px;
   background-color: white;
+  border: 2px #c8c8c8 solid;
 }
-.task-input .task-input__button {
+.task-add button[type=submit] {
   background-color: transparent;
   border: 1px solid transparent;
   height: 24px;
   width: 24px;
 }
-.task-input .task-input__button i {
+.task-add button[type=submit] i {
   position: relative;
   top: -18px;
   font-size: 50px;
   left: -9px;
   color: #c8c8c8;
 }
-.task-input input {
-  margin-top: 0;
-  padding: 0;
-  font-size: 30px;
+.task-add input[type=text] {
   border: 1px transparent solid;
   width: 100%;
   padding: 0 5px;
+  margin-top: 0;
+  padding: 0;
+  font-size: 30px;
 }
-.task-input input::placeholder {
+.task-add input[type=text]::placeholder {
   text-transform: capitalize;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
@@ -366,6 +367,10 @@ ul {
 
 .collect-mode {
   background-color: #fff2dc;
+}
+
+.collect-color {
+  color: #f5a623;
 }
 
 .folded {
