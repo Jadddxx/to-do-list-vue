@@ -7,9 +7,10 @@
 
 .task {
   &__head {
-    padding: 28px 32px;
+    padding: 24px 32px;
     @include display.flex(row, 0);
     @include display.flex-justify(space-between, center);
+    border-radius: 5px;
 
     &__main {
       @include display.flex(row, 10px);
@@ -58,20 +59,37 @@
         }
       }
     }
-
-    &_border {
-      padding: 28px 32px;
-      border-bottom: 2px base.$body_bg solid;
-    }
   }
 }
 
 // icon card
 
-.icon-card {
+.status__detail {
   @include display.flex(row, 10px);
   @include display.flex-justify(flex-start, center);
   position: relative;
-  margin-left: 40px;
+  padding: 0 72px 17px 72px;
   color: base.$body_bg--dark;
+  border-radius: 5px;
+
+  i {
+    font-size: 18px;
+  }
+
+  &__date {
+    @include display.flex(row, 5px);
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+
+  &__file {
+    @include display.flex(row, 5px);
+  }
+
+  &__comment {
+    @include display.flex(row, 5px);
+  }
 }

@@ -12,6 +12,14 @@
   display: none;
 }
 
+.radius {
+  border-radius: 5px;
+}
+
 .open-border {
   border-bottom: 2px base.$body_bg solid;
+}
+
+.task-body-top-border {
+  border-top: 2px base.$body_bg solid;
 }

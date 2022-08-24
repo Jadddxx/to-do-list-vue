@@ -10,6 +10,7 @@ taskList.addEventListener("click", saveTask);
 taskList.addEventListener("click", editTask);
 taskList.addEventListener("click", checkedTask);
 taskList.addEventListener("click", collectTask);
+taskList.addEventListener("click", deleteTask);
 
 function addTaskTable(e) {
   e.preventDefault();
@@ -86,13 +87,23 @@ function checkedTask(e) {
 }
 
 function collectTask(e) {
-  console.log(e.target);
   if (!e.target.classList.contains("collect-button")) return;
 
   const el = e.target;
   const index = el.dataset.index;
   tasks[index].collect = !tasks[index].collect;
 
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  addTaskList(tasks, taskList);
+}
+
+function deleteTask(e) {
+  if (!e.target.classList.contains("delete-button")) return;
+
+  const el = e.target;
+  const index = el.dataset.index;
+
+  tasks.splice(index, 1);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
 }
@@ -120,15 +131,27 @@ function collectTask(e) {
 //   localStorage.setItem("tasks", JSON.stringify(tasks));
 //   addTaskList(tasks, taskList);
 // }
+// ${ task.folded ? `<div class="status__detail">
+// <div class="status__detail__date">
+//   <i class="fa-regular fa-calendar-days"></i>
+//   <p>${task.date}</p>
+// </div>
+// <div class="status__detail__file">
+//   <i class="fa-regular fa-file"></i>
+//   <p>${task.file}</p>
+// </div>
+// <div class="status__detail__comment">
+//   <i class="fa-regular fa-comment-dots"></i>
+//   <p>${task.comment}</p>
+// </div>
+// </div>` : "" }
 
 function addTaskList(tasks = [], taskList) {
   taskList.innerHTML = tasks
     .map((task, index) => {
-      return `<div class="task ${
-        task.collect ? "collect-mode" : ""
-      }" data-index="${index}" >
+      return `<div class="task" data-index="${index}" >
     <div class="task__head ${
-      task.folded ? "" : "task__head_border"
+      task.collect ? "collect-mode" : ""
     }" data-index="${index}">
   <div class="task__head__main">
     <input class="task__checked" type="checkbox" name="checkbox" data-index="${index}" ${
@@ -152,7 +175,38 @@ function addTaskList(tasks = [], taskList) {
     </button>
   </div>
 </div>
-<div class="task__body ${task.folded ? "folded" : ""}" data-index="${index}">
+${
+  task.folded
+    ? `<div class="status__detail ${task.collect ? "collect-mode" : ""}">
+${
+  task.date === ""
+    ? ""
+    : `<div class="status__detail__date">
+<i class="fa-regular fa-calendar-days"></i>
+<p>${task.date}</p>
+</div>`
+}
+${
+  task.file === ""
+    ? ""
+    : `<div class="status__detail__file">
+<i class="fa-regular fa-file"></i>
+<p>${task.file}</p>
+</div>`
+}
+${
+  task.comment === ""
+    ? ""
+    : `<div class="status__detail__comment">
+<i class="fa-regular fa-comment-dots"></i>
+</div>`
+}
+</div>`
+    : ""
+}
+<div class="task__body ${
+        task.folded ? "folded" : "task-body-top-border"
+      }" data-index="${index}">
   <div class="date">
     <h3>dateline</h3>
     <div class="date__input">
