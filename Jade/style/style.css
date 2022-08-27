@@ -409,6 +409,13 @@ ul {
   border-top: 2px #c8c8c8 solid;
 }
 
+.fa-star,
+.fa-pen,
+.fa-plus,
+.fa-x {
+  pointer-events: none;
+}
+
 header {
   background-color: #4a90e2;
 }
@@ -460,14 +467,6 @@ body {
 @media (min-width: 768px) {
   .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link {
     text-align: center;
-  }
-}
-.container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
-  border: none;
-}
-@media (min-width: 768px) {
-  .container .navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
-    border-bottom: 3px solid #00408b;
   }
 }
 

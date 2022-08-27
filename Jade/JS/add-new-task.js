@@ -1,16 +1,17 @@
 const taskAdd = document.querySelector(".task-add");
 const taskList = document.querySelector(".task-list");
+// 如果localStorage有東西就抓裡面的task
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 // 一進來先抓local的東西刷新
 addTaskList(tasks, taskList);
 
 taskAdd.addEventListener("submit", addTaskTable);
-taskList.addEventListener("click", saveTask);
-taskList.addEventListener("click", editTask);
-taskList.addEventListener("click", checkedTask);
-taskList.addEventListener("click", collectTask);
-taskList.addEventListener("click", deleteTask);
+// taskList.addEventListener("click", saveTask);
+// taskList.addEventListener("click", editTask);
+// taskList.addEventListener("click", checkedTask);
+// taskList.addEventListener("click", collectTask);
+// taskList.addEventListener("click", deleteTask);
 
 function addTaskTable(e) {
   e.preventDefault();
@@ -33,28 +34,30 @@ function addTaskTable(e) {
 }
 
 function saveTask(e) {
-  if (!e.target.classList.contains("save-button")) return;
+  // if (!e.target.classList.contains("save-button")) return;
   const el = e.target;
   const index = el.dataset.index;
   // 選取現在的值
-  const taskTitle = this.querySelector(
+
+  const taskTitle = document.querySelector(
     `.task[data-index="${index}"] input[type="name"]`
   );
-  const taskComment = this.querySelector(
+
+  const taskComment = document.querySelector(
     `.task__body[data-index="${index}"] textarea[name="text"]`
   );
-  const taskDate = this.querySelector(
+  const taskDate = document.querySelector(
     `.task__body[data-index="${index}"] input[type="date"]`
   );
-  const taskDatetime = this.querySelector(
+  const taskDatetime = document.querySelector(
     `.task__body[data-index="${index}"] input[type="datetime"]`
   );
+
   tasks[index].comment = taskComment.value;
   tasks[index].title = taskTitle.value;
   tasks[index].date = taskDate.value;
   tasks[index].datetime = taskDatetime.value;
 
-  // 控制收合
   tasks[index].folded = !tasks[index].folded;
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -63,7 +66,7 @@ function saveTask(e) {
 
 function editTask(e) {
   // || edit icon沒用
-  if (!e.target.classList.contains("edit-button")) return;
+  // if (!e.target.classList.contains("edit-button")) return;
 
   const el = e.target;
   const index = el.dataset.index;
@@ -76,7 +79,7 @@ function editTask(e) {
 
 // 案的那個target一定要有data-index=.. 不然會抓不到index，所以等於所有要案的案件都要加上data-index=..
 function checkedTask(e) {
-  if (!e.target.classList.contains("task__checked")) return;
+  // if (!e.target.classList.contains("task__checked")) return;
 
   const el = e.target;
   const index = el.dataset.index;
@@ -87,8 +90,6 @@ function checkedTask(e) {
 }
 
 function collectTask(e) {
-  if (!e.target.classList.contains("collect-button")) return;
-
   const el = e.target;
   const index = el.dataset.index;
   tasks[index].collect = !tasks[index].collect;
@@ -98,7 +99,7 @@ function collectTask(e) {
 }
 
 function deleteTask(e) {
-  if (!e.target.classList.contains("delete-button")) return;
+  // if (!e.target.classList.contains("delete-button")) return;
 
   const el = e.target;
   const index = el.dataset.index;
@@ -107,44 +108,6 @@ function deleteTask(e) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
 }
-
-// function addFolded(e) {
-//   if (!e.target.classList.contains("save-button")) return;
-//   const el = e.target;
-//   const index = el.dataset.index;
-//   tasks[index].folded = !tasks[index].folded;
-
-//   const taskTitle = document.querySelector(
-//     `.task__title[data-index="${index}"]`
-//   );
-//   const taskHead = document.querySelector(`.task__head[data-index="${index}"]`);
-//   const taskBody = document.querySelector(`.task__body[data-index="${index}"]`);
-//   const taskStatus = document.querySelector(
-//     `.task__status[data-index="${index}"]`
-//   );
-
-//   taskTitle.setAttribute("disabled", "disabled");
-//   taskHead.classList.toggle("task__head_border");
-//   taskBody.classList.toggle("folded");
-//   taskStatus.classList.toggle("folded");
-
-//   localStorage.setItem("tasks", JSON.stringify(tasks));
-//   addTaskList(tasks, taskList);
-// }
-// ${ task.folded ? `<div class="status__detail">
-// <div class="status__detail__date">
-//   <i class="fa-regular fa-calendar-days"></i>
-//   <p>${task.date}</p>
-// </div>
-// <div class="status__detail__file">
-//   <i class="fa-regular fa-file"></i>
-//   <p>${task.file}</p>
-// </div>
-// <div class="status__detail__comment">
-//   <i class="fa-regular fa-comment-dots"></i>
-//   <p>${task.comment}</p>
-// </div>
-// </div>` : "" }
 
 function addTaskList(tasks = [], taskList) {
   taskList.innerHTML = tasks
@@ -158,7 +121,7 @@ function addTaskList(tasks = [], taskList) {
         task.done ? "checked" : ""
       }/>
     <input
-      type="name" d
+      type="name" 
       class="task__title"
       placeholder="type something here..."
       value="${task.title}"
@@ -242,6 +205,26 @@ ${
 </div>`;
     })
     .join("");
+
+  [...taskList.children].forEach((item) =>
+    item.querySelector(".collect-button").addEventListener("click", collectTask)
+  );
+
+  [...taskList.children].forEach((item) =>
+    item.querySelector(".edit-button").addEventListener("click", editTask)
+  );
+
+  [...taskList.children].forEach((item) =>
+    item.querySelector(".task__checked").addEventListener("click", checkedTask)
+  );
+
+  [...taskList.children].forEach((item) =>
+    item.querySelector(".delete-button").addEventListener("click", deleteTask)
+  );
+
+  [...taskList.children].forEach((item) =>
+    item.querySelector(".save-button").addEventListener("click", saveTask)
+  );
 }
 
 // 事件驅動

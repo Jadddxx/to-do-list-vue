@@ -4,7 +4,6 @@ $M-size: 768px;
 $L-size: 992px;
 $XL_size: 1200px;
 $XXL-size: 1440px;
-                           
 
 @mixin breakpoints($size) {
   @media (min-width: $size) {

@@ -23,3 +23,10 @@
 .task-body-top-border {
   border-top: 2px base.$body_bg solid;
 }
+
+.fa-star,
+.fa-pen,
+.fa-plus,
+.fa-x {
+  pointer-events: none;
+}

@@ -8,14 +8,14 @@ const list = document.querySelector(".task-list");
 //   let targetParent = e.target.closest(".task");
 
 //   // delete
-//   if (
-//     e.target.classList.contains("delete-button") ||
-//     e.target.classList.contains("fa-x") ||
-//     e.target.classList.contains("cancel-p")
-//   ) {
-//     list.removeChild(e.target.closest(".task"));
-//     // e.target.parentElement.parentElement.remove();
-//   }
+// if (
+//   e.target.classList.contains("delete-button") ||
+//   e.target.classList.contains("fa-x") ||
+//   e.target.classList.contains("cancel-p")
+// ) {
+//   list.removeChild(e.target.closest(".task"));
+//   // e.target.parentElement.parentElement.remove();
+// }
 
 //   // save
 //   if (e.target.classList.contains("save-button")) {

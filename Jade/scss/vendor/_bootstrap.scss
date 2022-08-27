@@ -1,12 +1,11 @@
-@use '../base';
-@use '../abstracts';
+@use "../base";
+@use "../abstracts";
 
 .container {
   .navbar {
     background-color: base.$primary;
 
     .container-fluid {
-
       button {
         padding: 10px;
       }
@@ -26,9 +25,9 @@
                 border-bottom: 3px solid base.$primary--dark;
               }
             }
-            
+
             .nav-link {
-              padding: 15px 20px;            
+              padding: 15px 20px;
               color: base.$primary--dark;
               @include base.subtitle;
 
@@ -36,13 +35,14 @@
               @include abstracts.breakpoints(768px) {
                 text-align: center;
               }
-              
-              &:hover {
-                border: none;
-                @include abstracts.breakpoints(768px) {
-                  border-bottom: 3px solid base.$primary--dark;
-                }
-              }
+
+              // &:hover {
+              //   color: white;
+              //   border: none;
+              //   @include abstracts.breakpoints(768px) {
+              //     border-bottom: 3px solid base.$primary--dark;
+              //   }
+              // }
             }
           }
         }
@@ -50,6 +50,3 @@
     }
   }
 }
-
-
-
