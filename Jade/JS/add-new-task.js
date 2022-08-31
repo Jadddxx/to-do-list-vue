@@ -7,11 +7,6 @@ const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 addTaskList(tasks, taskList);
 
 taskAdd.addEventListener("submit", addTaskTable);
-// taskList.addEventListener("click", saveTask);
-// taskList.addEventListener("click", editTask);
-// taskList.addEventListener("click", checkedTask);
-// taskList.addEventListener("click", collectTask);
-// taskList.addEventListener("click", deleteTask);
 
 function addTaskTable(e) {
   e.preventDefault();
@@ -34,11 +29,11 @@ function addTaskTable(e) {
 }
 
 function saveTask(e) {
-  // if (!e.target.classList.contains("save-button")) return;
   const el = e.target;
   const index = el.dataset.index;
   // 選取現在的值
 
+  // ?這邊用this.querySelector / document.querySelector 有什麼差別？
   const taskTitle = document.querySelector(
     `.task[data-index="${index}"] input[type="name"]`
   );
@@ -46,6 +41,7 @@ function saveTask(e) {
   const taskComment = document.querySelector(
     `.task__body[data-index="${index}"] textarea[name="text"]`
   );
+
   const taskDate = document.querySelector(
     `.task__body[data-index="${index}"] input[type="date"]`
   );
@@ -99,8 +95,6 @@ function collectTask(e) {
 }
 
 function deleteTask(e) {
-  // if (!e.target.classList.contains("delete-button")) return;
-
   const el = e.target;
   const index = el.dataset.index;
 
