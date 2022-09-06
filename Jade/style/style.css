@@ -362,10 +362,11 @@ ul {
 }
 .task-add button[type=submit] i {
   position: relative;
-  top: -18px;
+  top: -30px;
   font-size: 50px;
   left: -9px;
   color: #c8c8c8;
+  font-style: normal;
 }
 .task-add input[type=text] {
   border: 1px transparent solid;

@@ -1,6 +1,7 @@
 const taskAdd = document.querySelector(".task-add");
 const taskList = document.querySelector(".task-list");
 // 如果localStorage有東西就抓裡面的task
+// const tasks = [];
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 // 一進來先抓local的東西刷新
@@ -53,7 +54,6 @@ function saveTask(e) {
   tasks[index].title = taskTitle.value;
   tasks[index].date = taskDate.value;
   tasks[index].datetime = taskDatetime.value;
-
   tasks[index].folded = !tasks[index].folded;
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -61,9 +61,6 @@ function saveTask(e) {
 }
 
 function editTask(e) {
-  // || edit icon沒用
-  // if (!e.target.classList.contains("edit-button")) return;
-
   const el = e.target;
   const index = el.dataset.index;
 
@@ -75,8 +72,6 @@ function editTask(e) {
 
 // 案的那個target一定要有data-index=.. 不然會抓不到index，所以等於所有要案的案件都要加上data-index=..
 function checkedTask(e) {
-  // if (!e.target.classList.contains("task__checked")) return;
-
   const el = e.target;
   const index = el.dataset.index;
   tasks[index].done = !tasks[index].done;
@@ -88,6 +83,7 @@ function checkedTask(e) {
 function collectTask(e) {
   const el = e.target;
   const index = el.dataset.index;
+  console.log(index);
   tasks[index].collect = !tasks[index].collect;
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -99,6 +95,18 @@ function deleteTask(e) {
   const index = el.dataset.index;
 
   tasks.splice(index, 1);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  addTaskList(tasks, taskList);
+}
+
+// !有change再動
+function fileTask(e) {
+  console.log(e.target);
+  const el = e.target;
+  const index = el.dataset.index;
+  const fileName = el.files[0].name;
+
+  tasks[index].file = fileName;
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
 }
@@ -148,7 +156,6 @@ ${
     ? ""
     : `<div class="status__detail__file">
 <i class="fa-regular fa-file"></i>
-<p>${task.file}</p>
 </div>`
 }
 ${
@@ -173,8 +180,9 @@ ${
   </div>
   <div class="file">
     <h3>File</h3>
-    <label for="file"><i class="fa-solid fa-square-plus"></i></label>
-    <input id="file" type="file" name="" accept="" />
+    <label for="file" data-index="${index}"><i class="fa-solid fa-square-plus"></i></label>
+    <input id="file-${index}" type="file" data-index="${index}" name="" accept="" />
+    ${task.file === "" ? "" : `<div class="fileNameBox">${task.file}</div>`}
   </div>
   <div class="comment">
     <h3>comment</h3>
@@ -218,6 +226,12 @@ ${
 
   [...taskList.children].forEach((item) =>
     item.querySelector(".save-button").addEventListener("click", saveTask)
+  );
+
+  [...taskList.children].forEach((item) =>
+    item
+      .querySelector(`input[type="file"]`)
+      .addEventListener("change", fileTask)
   );
 }
 

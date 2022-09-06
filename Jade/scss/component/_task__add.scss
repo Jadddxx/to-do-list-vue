@@ -18,10 +18,11 @@
     height: 24px;
     width: 24px;
     i {
-      @include icon.icon_justify(-18px);
+      @include icon.icon_justify(-30px);
       font-size: 50px;
       left: -9px;
       color: base.$body_bg;
+      font-style: normal;
     }
   }
 

@@ -1,3 +1,5 @@
+// *按my tasks要渲染的東西，同add-new-task
+
 myTasks.addEventListener("click", myTasksHandler);
 inProgress.addEventListener("click", inProgressHandler);
 
@@ -10,7 +12,7 @@ function inProgressHandler(e) {
   taskList.innerHTML = tasks
     .map((task, index) => {
       if (!task.done) {
-        return `<div class="task" data-index="${index}" >
+        return `<div class="task"  draggable="true" data-index="${index}" >
       <div class="task__head ${
         task.collect ? "collect-mode" : ""
       }" data-index="${index}">
@@ -52,7 +54,6 @@ function inProgressHandler(e) {
       ? ""
       : `<div class="status__detail__file">
   <i class="fa-regular fa-file"></i>
-  <p>${task.file}</p>
   </div>`
   }
   ${
@@ -77,8 +78,9 @@ function inProgressHandler(e) {
     </div>
     <div class="file">
       <h3>File</h3>
-      <label for="file"><i class="fa-solid fa-square-plus"></i></label>
-      <input id="file" type="file" name="" accept="" />
+      <label for="file-${index}"><i class="fa-solid fa-square-plus"></i></label>
+      <input id="file-${index}" type="file" name="" accept="" data-index="${index}"/>
+      ${task.file === "" ? "" : `<div class="fileNameBox">${task.file}</div>`}
     </div>
     <div class="comment">
       <h3>comment</h3>
@@ -122,5 +124,5 @@ function inProgressHandler(e) {
 }
 
 function changeToOtherPlace(e) {
-  alert("Please go to My tasks and changing the task status.");
+  alert("Please go to My tasks for changing the task status.");
 }
