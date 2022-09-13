@@ -13,14 +13,15 @@ function addTaskTable(e) {
   e.preventDefault();
   const title = this.querySelector("input[type=text]").value;
   const taskItem = {
+    uuid: Date.now(),
     title,
     date: "",
     datetime: "",
     comment: "",
     file: "",
-    collect: false,
-    folded: false,
-    done: false,
+    isCollect: false,
+    isFolded: false,
+    isDone: false,
   };
 
   tasks.push(taskItem);
@@ -31,30 +32,47 @@ function addTaskTable(e) {
 
 function saveTask(e) {
   const el = e.target;
-  const index = el.dataset.index;
+  // const index = el.dataset.index;
   // 選取現在的值
+  const uuid = el.dataset.uuid;
+  // ! 這個拿到的是字串！
 
   // ?這邊用this.querySelector / document.querySelector 有什麼差別？
   const taskTitle = document.querySelector(
-    `.task[data-index="${index}"] input[type="name"]`
+    `.task[data-uuid="${uuid}"] input[type="name"]`
   );
 
   const taskComment = document.querySelector(
-    `.task__body[data-index="${index}"] textarea[name="text"]`
+    `.task__body[data-uuid="${uuid}"] textarea[name="text"]`
   );
 
   const taskDate = document.querySelector(
-    `.task__body[data-index="${index}"] input[type="date"]`
+    `.task__body[data-uuid="${uuid}"] input[type="date"]`
   );
   const taskDatetime = document.querySelector(
-    `.task__body[data-index="${index}"] input[type="datetime"]`
+    `.task__body[data-uuid="${uuid}"] input[type="datetime"]`
   );
 
-  tasks[index].comment = taskComment.value;
-  tasks[index].title = taskTitle.value;
-  tasks[index].date = taskDate.value;
-  tasks[index].datetime = taskDatetime.value;
-  tasks[index].folded = !tasks[index].folded;
+  // *用物件的方式去點點點，然後可以讓面的東西蓋著前面的
+  // !filter)
+  tasks.forEach((task, index) => {
+    if (task.uuid === Number(uuid)) {
+      // task = {
+      //   ...task,
+      //   title: taskTitle.value,
+      //   date: taskDate.value,
+      //   datetime: taskDatetime.value,
+      //   comment: taskComment.value,
+      //   folded: !task.folded,
+      //   done: !task.done,
+      // };
+      tasks[index].comment = taskComment.value;
+      tasks[index].title = taskTitle.value;
+      tasks[index].date = taskDate.value;
+      tasks[index].datetime = taskDatetime.value;
+      tasks[index].isFolded = !tasks[index].isFolded;
+    }
+  });
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
@@ -62,19 +80,32 @@ function saveTask(e) {
 
 function editTask(e) {
   const el = e.target;
-  const index = el.dataset.index;
+  // const index = el.dataset.index;
+  // tasks[index].folded = !tasks[index].folded;
 
-  tasks[index].folded = !tasks[index].folded;
+  const uuid = el.dataset.uuid;
+  tasks.forEach((task) => {
+    if (task.uuid === Number(uuid)) {
+      task.isFolded = !task.isFolded;
+    }
+  });
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
 }
 
-// 案的那個target一定要有data-index=.. 不然會抓不到index，所以等於所有要案的案件都要加上data-index=..
+// 案的那個target一定要有data-uuid=.. 不然會抓不到index，所以等於所有要案的案件都要加上data-uuid=..
 function checkedTask(e) {
   const el = e.target;
-  const index = el.dataset.index;
-  tasks[index].done = !tasks[index].done;
+  // const index = el.dataset.index;
+  // tasks[index].done = !tasks[index].done;
+
+  const uuid = el.dataset.uuid;
+  tasks.forEach((task) => {
+    if (task.uuid === Number(uuid)) {
+      task.isDone = !task.isDone;
+    }
+  });
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
@@ -82,9 +113,15 @@ function checkedTask(e) {
 
 function collectTask(e) {
   const el = e.target;
-  const index = el.dataset.index;
-  console.log(index);
-  tasks[index].collect = !tasks[index].collect;
+  // const index = el.dataset.index;
+  // tasks[index].collect = !tasks[index].collect;
+
+  const uuid = el.dataset.uuid;
+  tasks.forEach((task) => {
+    if (task.uuid === Number(uuid)) {
+      task.isCollect = !task.isCollect;
+    }
+  });
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
@@ -92,57 +129,72 @@ function collectTask(e) {
 
 function deleteTask(e) {
   const el = e.target;
-  const index = el.dataset.index;
+  // const index = el.dataset.index;
+  // tasks.splice(index, 1);
 
-  tasks.splice(index, 1);
+  const uuid = el.dataset.uuid;
+  let index1;
+  tasks.forEach((task, index) => {
+    if (task.uuid === Number(uuid)) {
+      index1 = index;
+    }
+  });
+  tasks.splice(index1, 1);
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
 }
 
 // !有change再動
 function fileTask(e) {
-  console.log(e.target);
   const el = e.target;
-  const index = el.dataset.index;
+  const uuid = el.dataset.uuid;
   const fileName = el.files[0].name;
 
-  tasks[index].file = fileName;
+  tasks.forEach((task) => {
+    if (task.uuid === Number(uuid)) {
+      task.file = fileName;
+    }
+  });
+
+  // const index = el.dataset.index;
+  // tasks[index].file = fileName;
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
 }
 
 function addTaskList(tasks = [], taskList) {
   taskList.innerHTML = tasks
-    .map((task, index) => {
-      return `<div class="task" data-index="${index}" >
+    .map((task) => {
+      return `<div class="task" draggable="true" data-uuid="${task.uuid}">
     <div class="task__head ${
-      task.collect ? "collect-mode" : ""
-    }" data-index="${index}">
+      task.isCollect ? "collect-mode" : ""
+    }" data-uuid="${task.uuid}">
   <div class="task__head__main">
-    <input class="task__checked" type="checkbox" name="checkbox" data-index="${index}" ${
-        task.done ? "checked" : ""
-      }/>
+    <input class="task__checked" type="checkbox" name="checkbox" data-uuid="${
+      task.uuid
+    }" ${task.isDone ? "checked" : ""}/>
     <input
       type="name" 
       class="task__title"
       placeholder="type something here..."
       value="${task.title}"
-      ${task.folded ? 'disabled="disabled"' : ""} />
+      ${task.isFolded ? 'disabled="disabled"' : ""} />
   </div>
-  <div class="task__head__icon" data-index="${index}">
-    <button type="button" class="collect-button" data-index="${index}">
+  <div class="task__head__icon" data-uuid="${task.uuid}">
+    <button type="button" class="collect-button" data-uuid="${task.uuid}">
       <i class="${
-        task.collect ? "fa-solid collect-color" : "fa-regular"
+        task.isCollect ? "fa-solid collect-color" : "fa-regular"
       } fa-star"></i>
     </button>
-    <button type="button" class="edit-button" data-index="${index}">
+    <button type="button" class="edit-button" data-uuid="${task.uuid}">
       <i class="fa-solid fa-pen"></i>
     </button>
   </div>
 </div>
 ${
-  task.folded
-    ? `<div class="status__detail ${task.collect ? "collect-mode" : ""}">
+  task.isFolded
+    ? `<div class="status__detail ${task.isCollect ? "collect-mode" : ""}">
 ${
   task.date === ""
     ? ""
@@ -169,8 +221,8 @@ ${
     : ""
 }
 <div class="task__body ${
-        task.folded ? "folded" : "task-body-top-border"
-      }" data-index="${index}">
+        task.isFolded ? "folded" : "task-body-top-border"
+      }" data-uuid="${task.uuid}">
   <div class="date">
     <h3>dateline</h3>
     <div class="date__input">
@@ -180,8 +232,12 @@ ${
   </div>
   <div class="file">
     <h3>File</h3>
-    <label for="file" data-index="${index}"><i class="fa-solid fa-square-plus"></i></label>
-    <input id="file-${index}" type="file" data-index="${index}" name="" accept="" />
+    <label for="file-${task.uuid}" data-uuid="${
+        task.uuid
+      }"><i class="fa-solid fa-square-plus"></i></label>
+    <input id="file-${task.uuid}" type="file" data-uuid="${
+        task.uuid
+      }" name="" accept="" />
     ${task.file === "" ? "" : `<div class="fileNameBox">${task.file}</div>`}
   </div>
   <div class="comment">
@@ -194,12 +250,14 @@ ${
     >${task.comment === "" ? "" : task.comment}</textarea>
   </div>
 </div>
-<div class="task__status ${task.folded ? "folded" : ""}" data-index="${index}">
-  <button class="delete-button" type="button" data-index="${index}">
+<div class="task__status ${task.isFolded ? "folded" : ""}" data-uuid="${
+        task.uuid
+      }">
+  <button class="delete-button" type="button" data-uuid="${task.uuid}">
     <i class="fa-regular fa-x"></i>
     <p>delete</p>
   </button>
-  <button class="save-button" type="button" data-index="${index}">
+  <button class="save-button" type="button" data-uuid="${task.uuid}">
     <i class="fa-regular fa-plus"></i>
     <p>save</p>
   </button>

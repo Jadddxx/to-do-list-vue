@@ -1,33 +1,101 @@
-// *先讓task可以互相移動
-// - 綁定container是可以被drop，每個task都是draggable=true
-// - 依照位置來改變index值，所以會重新渲染畫面
-
-// *替每個task加上before, after，之後判斷要加在前面後面
-// - 會使用task的offsetY是否大小於1/2，判斷放前面後面
-
-// todo 判斷task要被新增的位置，是在前面後面，然後讓兩個index值互相交換？
-// -宣告被覆蓋的那個item，來比對判斷，然後用Node.insertBefore()
-
 const allTasks = document.querySelectorAll(".task");
 
 allTasks.forEach((task) => {
   task.addEventListener("dragstart", dragHandler);
 });
 
+taskList.addEventListener("drop", dropHandler);
+taskList.addEventListener("dragover", dropoverHandler);
+taskList.addEventListener("dragenter", cancelDefault);
+
+let moveTarget;
+
 function dragHandler(e) {
-  e.dataTransfer.setData("text/plain", e.target.dataset.index);
+  console.log("drag start");
+  moveTarget = e.target;
+  console.log(moveTarget);
+  e.dataTransfer.setData("text/plain", e.target.dataset.uuid);
 }
 
-taskList.addEventListener("drop", dropHandler);
-taskList.addEventListener("dragenter", cancelDefault);
-taskList.addEventListener("dragover", cancelDefault);
-
 function dropHandler(e) {
-  let index = e.dataTransfer.getData("text/plain");
-  taskList.appendChild(document.querySelector(`.task[data-index="${index}"]`));
+  cancelDefault(e);
+  const moveTargetUuid = e.dataTransfer.getData("text/plain");
+  moveTarget = document.querySelector(`.task[data-uuid="${moveTargetUuid}"]`);
+  const overItemUuid = overItem.dataset.uuid;
+  let moveTargetIndex;
+  let overItemIndex;
+  console.log(moveTargetUuid);
+  console.log(overItemUuid);
+
+  tasks.forEach((task, index) => {
+    if (task.uuid === Number(moveTargetUuid)) {
+      moveTargetIndex = index;
+    }
+    if (task.uuid === Number(overItemUuid)) {
+      overItemIndex = index;
+    }
+  });
+
+  if (overItem.classList.contains("borderAbove")) {
+    // -取代原本overItem的位置，再把原本的moveTarget刪掉
+    taskList.insertBefore(moveTarget, overItem);
+    // -moveTarget的index大於overItem的index
+    if (moveTargetIndex > overItemIndex) {
+      tasks.splice(overItemIndex, 0, tasks[moveTargetIndex]);
+      tasks.splice(moveTargetIndex + 1, 1);
+      // -moveTarget的index小於overItem的index
+    } else if (moveTargetIndex < overItemIndex) {
+      tasks.splice(overItemIndex, 0, tasks[moveTargetIndex]);
+      tasks.splice(moveTargetIndex, 1);
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    addTaskList(tasks, taskList);
+  }
+  if (overItem.classList.contains("borderBelow")) {
+    // -取代overItem + 1的位置，再把原本的moveTarget刪掉
+    taskList.insertBefore(moveTarget, overItem.nextElementSibling);
+    tasks.splice(overItemIndex, 0, tasks[moveTargetIndex]);
+    tasks.splice(moveTargetIndex, 1);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    addTaskList(tasks, taskList);
+  }
+
+  cancelOverItem(e);
+}
+
+let overItem = null;
+
+function dropoverHandler(e) {
+  cancelDefault(e);
+  cancelOverItem(e);
+
+  // !如果有經過task之間的空格是task-list要避掉
+  if (e.target !== moveTarget && !e.target.classList.contains("task-list")) {
+    overItem = e.target.closest(".task");
+    console.log(
+      overItem.querySelector(".task__head__main").children[1].value,
+      "drag ovveeeeeer"
+    );
+
+    if (e.offsetY > overItem.offsetHeight / 2) {
+      overItem.classList.add("borderBelow");
+    } else {
+      overItem.classList.add("borderAbove");
+    }
+  }
 }
 
 function cancelDefault(e) {
   e.preventDefault();
   e.stopPropagation();
+  return false;
+}
+
+function cancelOverItem(e) {
+  if (!overItem) return;
+  overItem.classList.remove("borderBelow");
+  overItem.classList.remove("borderAbove");
+  overItem = null;
 }

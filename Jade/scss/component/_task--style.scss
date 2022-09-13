@@ -30,3 +30,11 @@
 .fa-x {
   pointer-events: none;
 }
+
+.task.borderAbove {
+  border-top: 5px rgba(153, 183, 249, 0.767) solid;
+}
+
+.task.borderBelow {
+  border-bottom: 5px rgba(153, 183, 249, 0.767) solid;
+}
