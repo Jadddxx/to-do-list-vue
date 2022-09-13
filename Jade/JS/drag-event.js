@@ -20,18 +20,18 @@ function dragHandler(e) {
 }
 
 function dropHandler(e) {
-  const moveTargetUuid = moveTarget.dataset.uuid;
-  const overItemUuid = overItem.dataset.uuid;
+  const moveTargetId = moveTarget.dataset.id;
+  const overItemId = overItem.dataset.id;
   let moveTargetIndex;
   let overItemIndex;
   console.log(moveTarget.querySelector(".task__head__main").children[1].value);
   console.log(overItem.querySelector(".task__head__main").children[1].value);
 
   tasks.forEach((task, index) => {
-    if (task.uuid === Number(moveTargetUuid)) {
+    if (task.id === Number(moveTargetId)) {
       moveTargetIndex = index;
     }
-    if (task.uuid === Number(overItemUuid)) {
+    if (task.id === Number(overItemId)) {
       overItemIndex = index;
     }
   });

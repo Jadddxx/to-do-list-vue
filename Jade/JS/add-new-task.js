@@ -13,7 +13,7 @@ function addTaskTable(e) {
   e.preventDefault();
   const title = this.querySelector("input[type=text]").value;
   const taskItem = {
-    uuid: Date.now(),
+    id: Date.now(),
     title,
     date: "",
     datetime: "",
@@ -32,40 +32,27 @@ function addTaskTable(e) {
 
 function saveTask(e) {
   const el = e.target;
-  // const index = el.dataset.index;
-  // 選取現在的值
-  const uuid = el.dataset.uuid;
+  const id = el.dataset.id;
   // ! 這個拿到的是字串！
 
   // ?這邊用this.querySelector / document.querySelector 有什麼差別？
   const taskTitle = document.querySelector(
-    `.task[data-uuid="${uuid}"] input[type="name"]`
+    `.task[data-id="${id}"] input[type="name"]`
   );
 
   const taskComment = document.querySelector(
-    `.task__body[data-uuid="${uuid}"] textarea[name="text"]`
+    `.task__body[data-id="${id}"] textarea[name="text"]`
   );
 
   const taskDate = document.querySelector(
-    `.task__body[data-uuid="${uuid}"] input[type="date"]`
+    `.task__body[data-id="${id}"] input[type="date"]`
   );
   const taskDatetime = document.querySelector(
-    `.task__body[data-uuid="${uuid}"] input[type="datetime"]`
+    `.task__body[data-id="${id}"] input[type="datetime"]`
   );
 
-  // *用物件的方式去點點點，然後可以讓面的東西蓋著前面的
-  // !filter)
   tasks.forEach((task, index) => {
-    if (task.uuid === Number(uuid)) {
-      // task = {
-      //   ...task,
-      //   title: taskTitle.value,
-      //   date: taskDate.value,
-      //   datetime: taskDatetime.value,
-      //   comment: taskComment.value,
-      //   folded: !task.folded,
-      //   done: !task.done,
-      // };
+    if (task.id === Number(id)) {
       tasks[index].comment = taskComment.value;
       tasks[index].title = taskTitle.value;
       tasks[index].date = taskDate.value;
@@ -80,12 +67,9 @@ function saveTask(e) {
 
 function editTask(e) {
   const el = e.target;
-  // const index = el.dataset.index;
-  // tasks[index].folded = !tasks[index].folded;
-
-  const uuid = el.dataset.uuid;
+  const id = el.dataset.id;
   tasks.forEach((task) => {
-    if (task.uuid === Number(uuid)) {
+    if (task.id === Number(id)) {
       task.isFolded = !task.isFolded;
     }
   });
@@ -94,15 +78,11 @@ function editTask(e) {
   addTaskList(tasks, taskList);
 }
 
-// 案的那個target一定要有data-uuid=.. 不然會抓不到index，所以等於所有要案的案件都要加上data-uuid=..
 function checkedTask(e) {
   const el = e.target;
-  // const index = el.dataset.index;
-  // tasks[index].done = !tasks[index].done;
-
-  const uuid = el.dataset.uuid;
+  const id = el.dataset.id;
   tasks.forEach((task) => {
-    if (task.uuid === Number(uuid)) {
+    if (task.id === Number(id)) {
       task.isDone = !task.isDone;
     }
   });
@@ -113,12 +93,9 @@ function checkedTask(e) {
 
 function collectTask(e) {
   const el = e.target;
-  // const index = el.dataset.index;
-  // tasks[index].collect = !tasks[index].collect;
-
-  const uuid = el.dataset.uuid;
+  const id = el.dataset.id;
   tasks.forEach((task) => {
-    if (task.uuid === Number(uuid)) {
+    if (task.id === Number(id)) {
       task.isCollect = !task.isCollect;
     }
   });
@@ -129,13 +106,10 @@ function collectTask(e) {
 
 function deleteTask(e) {
   const el = e.target;
-  // const index = el.dataset.index;
-  // tasks.splice(index, 1);
-
-  const uuid = el.dataset.uuid;
+  const id = el.dataset.id;
   let index1;
   tasks.forEach((task, index) => {
-    if (task.uuid === Number(uuid)) {
+    if (task.id === Number(id)) {
       index1 = index;
     }
   });
@@ -148,17 +122,15 @@ function deleteTask(e) {
 // !有change再動
 function fileTask(e) {
   const el = e.target;
-  const uuid = el.dataset.uuid;
+  const id = el.dataset.id;
   const fileName = el.files[0].name;
 
   tasks.forEach((task) => {
-    if (task.uuid === Number(uuid)) {
+    if (task.id === Number(id)) {
       task.file = fileName;
     }
   });
 
-  // const index = el.dataset.index;
-  // tasks[index].file = fileName;
   localStorage.setItem("tasks", JSON.stringify(tasks));
   addTaskList(tasks, taskList);
 }
@@ -166,13 +138,13 @@ function fileTask(e) {
 function addTaskList(tasks = [], taskList) {
   taskList.innerHTML = tasks
     .map((task) => {
-      return `<div class="task" draggable="true" data-uuid="${task.uuid}">
-    <div class="task__head ${
-      task.isCollect ? "collect-mode" : ""
-    }" data-uuid="${task.uuid}">
+      return `<div class="task" draggable="true" data-id="${task.id}">
+    <div class="task__head ${task.isCollect ? "collect-mode" : ""}" data-id="${
+        task.id
+      }">
   <div class="task__head__main">
-    <input class="task__checked" type="checkbox" name="checkbox" data-uuid="${
-      task.uuid
+    <input class="task__checked" type="checkbox" name="checkbox" data-id="${
+      task.id
     }" ${task.isDone ? "checked" : ""}/>
     <input
       type="name" 
@@ -181,13 +153,13 @@ function addTaskList(tasks = [], taskList) {
       value="${task.title}"
       ${task.isFolded ? 'disabled="disabled"' : ""} />
   </div>
-  <div class="task__head__icon" data-uuid="${task.uuid}">
-    <button type="button" class="collect-button" data-uuid="${task.uuid}">
+  <div class="task__head__icon" data-id="${task.id}">
+    <button type="button" class="collect-button" data-id="${task.id}">
       <i class="${
         task.isCollect ? "fa-solid collect-color" : "fa-regular"
       } fa-star"></i>
     </button>
-    <button type="button" class="edit-button" data-uuid="${task.uuid}">
+    <button type="button" class="edit-button" data-id="${task.id}">
       <i class="fa-solid fa-pen"></i>
     </button>
   </div>
@@ -222,7 +194,7 @@ ${
 }
 <div class="task__body ${
         task.isFolded ? "folded" : "task-body-top-border"
-      }" data-uuid="${task.uuid}">
+      }" data-id="${task.id}">
   <div class="date">
     <h3>dateline</h3>
     <div class="date__input">
@@ -232,11 +204,11 @@ ${
   </div>
   <div class="file">
     <h3>File</h3>
-    <label for="file-${task.uuid}" data-uuid="${
-        task.uuid
+    <label for="file-${task.id}" data-id="${
+        task.id
       }"><i class="fa-solid fa-square-plus"></i></label>
-    <input id="file-${task.uuid}" type="file" data-uuid="${
-        task.uuid
+    <input id="file-${task.id}" type="file" data-id="${
+        task.id
       }" name="" accept="" />
     ${task.file === "" ? "" : `<div class="fileNameBox">${task.file}</div>`}
   </div>
@@ -250,14 +222,12 @@ ${
     >${task.comment === "" ? "" : task.comment}</textarea>
   </div>
 </div>
-<div class="task__status ${task.isFolded ? "folded" : ""}" data-uuid="${
-        task.uuid
-      }">
-  <button class="delete-button" type="button" data-uuid="${task.uuid}">
+<div class="task__status ${task.isFolded ? "folded" : ""}" data-id="${task.id}">
+  <button class="delete-button" type="button" data-id="${task.id}">
     <i class="fa-regular fa-x"></i>
     <p>delete</p>
   </button>
-  <button class="save-button" type="button" data-uuid="${task.uuid}">
+  <button class="save-button" type="button" data-id="${task.id}">
     <i class="fa-regular fa-plus"></i>
     <p>save</p>
   </button>

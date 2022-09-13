@@ -6,13 +6,13 @@ function completedHandler(e) {
   taskList.innerHTML = tasks
     .map((task) => {
       if (task.isDone) {
-        return `<div class="task" draggable="true" data-uuid="${task.uuid}">
+        return `<div class="task" draggable="true" data-id="${task.id}">
         <div class="task__head ${
           task.isCollect ? "collect-mode" : ""
-        }" data-uuid="${task.uuid}">
+        }" data-id="${task.id}">
       <div class="task__head__main">
-        <input class="task__checked" type="checkbox" name="checkbox" data-uuid="${
-          task.uuid
+        <input class="task__checked" type="checkbox" name="checkbox" data-id="${
+          task.id
         }" ${task.isDone ? "checked" : ""}/>
         <input
           type="name" 
@@ -21,13 +21,13 @@ function completedHandler(e) {
           value="${task.title}"
           ${task.isFolded ? 'disabled="disabled"' : ""} />
       </div>
-      <div class="task__head__icon" data-uuid="${task.uuid}">
-        <button type="button" class="collect-button" data-uuid="${task.uuid}">
+      <div class="task__head__icon" data-id="${task.id}">
+        <button type="button" class="collect-button" data-id="${task.id}">
           <i class="${
             task.isCollect ? "fa-solid collect-color" : "fa-regular"
           } fa-star"></i>
         </button>
-        <button type="button" class="edit-button" data-uuid="${task.uuid}">
+        <button type="button" class="edit-button" data-id="${task.id}">
           <i class="fa-solid fa-pen"></i>
         </button>
       </div>
@@ -62,7 +62,7 @@ function completedHandler(e) {
     }
     <div class="task__body ${
       task.isFolded ? "folded" : "task-body-top-border"
-    }" data-uuid="${task.uuid}">
+    }" data-id="${task.id}">
       <div class="date">
         <h3>dateline</h3>
         <div class="date__input">
@@ -72,11 +72,11 @@ function completedHandler(e) {
       </div>
       <div class="file">
         <h3>File</h3>
-        <label for="file-${task.uuid}" data-uuid="${
-          task.uuid
+        <label for="file-${task.id}" data-id="${
+          task.id
         }"><i class="fa-solid fa-square-plus"></i></label>
-        <input id="file-${task.uuid}" type="file" data-uuid="${
-          task.uuid
+        <input id="file-${task.id}" type="file" data-id="${
+          task.id
         }" name="" accept="" />
         ${task.file === "" ? "" : `<div class="fileNameBox">${task.file}</div>`}
       </div>
@@ -90,14 +90,14 @@ function completedHandler(e) {
         >${task.comment === "" ? "" : task.comment}</textarea>
       </div>
     </div>
-    <div class="task__status ${task.isFolded ? "folded" : ""}" data-uuid="${
-          task.uuid
+    <div class="task__status ${task.isFolded ? "folded" : ""}" data-id="${
+          task.id
         }">
-      <button class="delete-button" type="button" data-uuid="${task.uuid}">
+      <button class="delete-button" type="button" data-id="${task.id}">
         <i class="fa-regular fa-x"></i>
         <p>delete</p>
       </button>
-      <button class="save-button" type="button" data-uuid="${task.uuid}">
+      <button class="save-button" type="button" data-id="${task.id}">
         <i class="fa-regular fa-plus"></i>
         <p>save</p>
       </button>
