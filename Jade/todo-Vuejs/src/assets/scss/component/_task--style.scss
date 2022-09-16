@@ -1,0 +1,40 @@
+@use "../base";
+
+.collect-mode {
+  background-color: base.$collect_bg;
+}
+
+.collect-color {
+  color: base.$collect_color;
+}
+
+.folded {
+  display: none;
+}
+
+.radius {
+  border-radius: 5px;
+}
+
+.open-border {
+  border-bottom: 2px base.$body_bg solid;
+}
+
+.task-body-top-border {
+  border-top: 2px base.$body_bg solid;
+}
+
+.fa-star,
+.fa-pen,
+.fa-plus,
+.fa-x {
+  pointer-events: none;
+}
+
+.task.borderAbove {
+  border-top: 5px rgba(153, 183, 249, 0.767) solid;
+}
+
+.task.borderBelow {
+  border-bottom: 5px rgba(153, 183, 249, 0.767) solid;
+}

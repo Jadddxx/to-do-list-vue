@@ -1,0 +1,52 @@
+@use "../base";
+@use "../abstracts";
+
+.container {
+  .navbar {
+    background-color: base.$primary;
+
+    .container-fluid {
+      button {
+        padding: 10px;
+      }
+
+      .navbar-collapse {
+        justify-content: unset;
+
+        .navbar-nav {
+          width: 100%;
+          .nav-item {
+            flex: 1 0 0;
+            text-align: left;
+
+            .nav-link.active {
+              color: base.$font--hover;
+              @include abstracts.breakpoints(768px) {
+                border-bottom: 3px solid base.$primary--dark;
+              }
+            }
+
+            .nav-link {
+              padding: 15px 20px;
+              color: base.$primary--dark;
+              @include base.subtitle;
+
+              text-align: left;
+              @include abstracts.breakpoints(768px) {
+                text-align: center;
+              }
+
+              // &:hover {
+              //   color: white;
+              //   border: none;
+              //   @include abstracts.breakpoints(768px) {
+              //     border-bottom: 3px solid base.$primary--dark;
+              //   }
+              // }
+            }
+          }
+        }
+      }
+    }
+  }
+}

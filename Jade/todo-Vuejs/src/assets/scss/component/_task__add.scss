@@ -1,0 +1,35 @@
+@use "input";
+@use "../base";
+@use "display";
+@use "icon";
+
+.task-add {
+  @include display.flex(row, 10px);
+  align-items: center;
+  padding: 9px 32px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: white;
+  border: 2px base.$body_bg solid;
+
+  button[type="submit"] {
+    background-color: transparent;
+    border: 1px solid transparent;
+    height: 24px;
+    width: 24px;
+    i {
+      @include icon.icon_justify(-30px);
+      font-size: 50px;
+      left: -9px;
+      color: base.$body_bg;
+      font-style: normal;
+    }
+  }
+
+  input[type="text"] {
+    @include input.input-add;
+    margin-top: 0;
+    padding: 0 5px;
+    font-size: 30px;
+  }
+}

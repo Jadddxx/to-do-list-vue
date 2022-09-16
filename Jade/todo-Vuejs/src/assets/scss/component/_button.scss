@@ -1,0 +1,64 @@
+@use "../abstracts";
+@use "../base";
+@use "input";
+@use "icon";
+@use "display";
+
+@mixin button--success {
+  @include display.flex(row, 10px);
+  @include display.flex-justify(center, center);
+
+  height: 60px;
+  width: 310px;
+
+  @include base.subtitle;
+
+  border-radius: 5px;
+  background-color: base.$primary;
+  color: base.$font--hover;
+  border: 1px transparent solid;
+  p {
+    margin: 0;
+    display: none;
+    @include abstracts.breakpoints(576px) {
+      display: block;
+    }
+  }
+
+  i {
+    @include icon.icon_justify(-3px);
+    font-size: 30px;
+  }
+}
+
+@mixin button--fail {
+  @include display.flex(row, 10px);
+  @include display.flex-justify(center, center);
+
+  @include base.subtitle;
+
+  height: 60px;
+  width: 310px;
+
+  border-radius: 5px;
+  border: 1px transparent solid;
+  background-color: base.$font--hover;
+  color: base.$checked;
+  p {
+    margin: 0;
+    display: none;
+    @include abstracts.breakpoints(576px) {
+      display: block;
+    }
+  }
+
+  i {
+    @include icon.icon_justify(-2px);
+    font-size: 20px;
+  }
+}
+
+@mixin button--transparent {
+  border: 1px solid transparent;
+  background-color: transparent;
+}

@@ -1,0 +1,8 @@
+@use '../abstracts';
+@use '../base';
+
+.container {
+  @include abstracts.breakpoints(768px) {
+    max-width: 620px;
+  }
+}

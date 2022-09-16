@@ -1,0 +1,76 @@
+@use "../abstracts";
+@use "../base";
+@use "input";
+@use "icon";
+@use "display";
+
+.task {
+  &__body {
+    padding: 28px 96px;
+    @include display.flex(column, 10px);
+
+    .date {
+      @include display.flex(column, 0);
+
+      h3 {
+        @include base.paragraph;
+        position: relative;
+
+        &::before {
+          @include icon.icon_Pseudo(-25px, "\f073", 400);
+        }
+      }
+
+      &__input {
+        @include display.flex(row, 10px);
+        width: 100%;
+
+        input {
+          @include input.input-basic;
+        }
+      }
+    }
+
+    .file {
+      @include display.flex(column, 0);
+
+      h3 {
+        @include base.paragraph;
+        position: relative;
+
+        &::before {
+          @include icon.icon_Pseudo(-25px, "\f15b", 300);
+        }
+      }
+
+      label {
+        margin-top: 10px;
+        color: base.$body_bg;
+        cursor: pointer;
+
+        i {
+          font-size: 30px;
+        }
+      }
+      input {
+        display: none;
+      }
+    }
+
+    .comment {
+      @include display.flex(column, 0);
+
+      h3 {
+        @include base.paragraph;
+        position: relative;
+
+        &::before {
+          @include icon.icon_Pseudo(-25px, "\f4ad", 300);
+        }
+      }
+      textarea {
+        @include input.text-area-comment;
+      }
+    }
+  }
+}

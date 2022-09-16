@@ -1,0 +1,18 @@
+@use "display";
+@use "button";
+
+.task {
+  &__status {
+    @include display.flex(row, 0);
+
+    .delete-button {
+      width: 310px;
+      @include button.button--fail;
+    }
+
+    .save-button {
+      width: 310px;
+      @include button.button--success;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@mixin title {
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+@mixin add-title {
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  margin: 0;
+}
+
+@mixin subtitle {
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+@mixin paragraph {
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+@mixin status {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin: 0;
+}
