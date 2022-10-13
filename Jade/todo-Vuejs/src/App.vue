@@ -13,15 +13,12 @@ import TaskList1 from "./components/TaskList1.vue";
   <main>
     <div class="container p-0">
       <AddTask></AddTask>
-      <TaskList1></TaskList1>
+      <!-- <TaskList1></TaskList1> -->
     </div>
   </main>
 </template>
 
 <style scoped lang="scss">
-body {
-  background-color: $font--light;
-}
 .container {
   @include breakpoints(768px) {
     max-width: 620px;
