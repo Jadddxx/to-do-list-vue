@@ -1,12 +1,12 @@
 <script setup>
-import { reactive, ref } from "vue";
-const tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
+import { ref } from "vue";
+let tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
 let title = ref("");
-let newTask = ref(false);
 
-const initTmp = {
+// 初始化的物件 fn, 確保一直產生新的物件
+const initTask = () => ({
   id: Date.now(),
-  title: title,
+  title: "",
   date: "",
   datetime: "",
   comment: "",
@@ -14,55 +14,67 @@ const initTmp = {
   isCollect: false,
   isFolded: false,
   isDone: false,
+});
+
+const newTaskObject = ref(initTask());
+
+let newTask = ref(false);
+const addTasks = () => {
+  // 把區塊打開
+  newTask.value = true;
+  // 把title 的值 賦值給 新的task
+  newTaskObject.value.title = title.value;
 };
 
-const newTaskTable = reactive({ ...initTmp });
+const pushToTasks = (currentObject) => {
+  currentObject.isFolded = true;
+  // 把newTaskObject 加進去
+  tasks.value = [currentObject, ...tasks.value];
 
-const pushTaskArray = (pushArray, currentArray) => {
-  currentArray.isFolded = true;
-  pushArray.push(currentArray);
-  localStorage.setItem("tasks", JSON.stringify(pushArray));
-  // 把title清掉
-  clearFeedback(currentArray);
-  newTask = false;
+  localStorage.setItem("tasks", JSON.stringify(tasks.value));
+  // 讓這塊區塊消失
+  newTask.value = false;
+
+  // 如果要消除它就必須出現
+  clearNewTaskObject();
 };
 
-const clearFeedback = (currentArray) => {
-  // for (const key in currentArray) {
-  //   currentArray[key] = "";
-  // }
-  Object.assign(currentArray, initTmp);
+const clearNewTaskObject = () => {
+  // 把title清空
+  title.value = "";
+  // 用一個初始值去賦值給newTaskObject
+  newTaskObject.value = initTask();
 };
 
-const addNewTask = () => {
-  newTask = true;
-  // title.value = "";
-};
-
-const folded = (task) => {
-  console.log("here");
-  task.isFolded = !task.isFolded;
+const deleteItem = function (currentObject, task) {
+  const index = currentObject.indexOf(task);
+  currentObject.splice(index, 1);
+  localStorage.setItem("tasks", JSON.stringify(currentObject));
 };
 </script>
 
 <template>
-  <div>{{ newTaskTable }}</div>
+  <pre>{{ newTaskObject }}</pre>
   <form class="task-add">
-    <button type="submit" @click.prevent="newTask = true">
+    <button type="submit" @click.prevent="addTasks()">
       <font-awesome-icon icon="fa-solid fa-plus" />
     </button>
     <input type="text" placeholder="add task" v-model="title" />
   </form>
   <template v-if="newTask">
-    <div class="task" draggable="true" :key="newTaskTable.id">
+    <div class="task" draggable="true" :key="newTaskObject.id">
       <div class="task__head">
         <div class="task__head__main">
-          <input class="task__checked" type="checkbox" name="checkbox" />
+          <input
+            class="task__checked"
+            type="checkbox"
+            name="checkbox"
+            v-model="newTaskObject.isDone" />
           <input
             type="name"
             class="task__title"
             placeholder="type something here..."
-            v-model="newTaskTable.title" />
+            v-model="newTaskObject.title" />
         </div>
         <div class="task__head__icon">
           <button type="button" class="collect-button">
@@ -80,19 +92,19 @@ const folded = (task) => {
             <input
               type="date"
               placeholder="yyyy/mm/dd"
-              v-model="newTaskTable.date" />
+              v-model="newTaskObject.date" />
             <input
               type="datetime"
               placeholder="hh:mm"
-              v-model="newTaskTable.datetime" />
+              v-model="newTaskObject.datetime" />
           </div>
         </div>
         <div class="file">
           <h3>File</h3>
-          <label :for="'file' + newTaskTable.id">
+          <label :for="'file' + newTaskObject.id">
             <font-awesome-icon icon="fa-solid fa-square-plus" />
           </label>
-          <input :id="'file' + newTaskTable.id" type="file" name="file" />
+          <input :id="'file' + newTaskObject.id" type="file" name="file" />
           <div class="fileNameBox"></div>
         </div>
         <div class="comment">
@@ -102,7 +114,7 @@ const folded = (task) => {
             cols="10"
             rows="4"
             placeholder="type your memo here..."
-            v-model="newTaskTable.comment"></textarea>
+            v-model="newTaskObject.comment"></textarea>
         </div>
       </div>
       <div class="task__status">
@@ -113,7 +125,7 @@ const folded = (task) => {
         <button
           class="save-button"
           type="button"
-          @click.prevent="pushTaskArray(tasks, newTaskTable)">
+          @click.prevent="pushToTasks(newTaskObject)">
           <font-awesome-icon icon="fa-solid fa-plus" />
           <p>save</p>
         </button>
@@ -128,7 +140,7 @@ const folded = (task) => {
             class="task__checked"
             type="checkbox"
             name="checkbox"
-            :checked="task.isDone" />
+            v-model="task.isDone" />
           <input
             type="name"
             class="task__title"
@@ -143,13 +155,16 @@ const folded = (task) => {
             @click="task.isCollect = !task.isCollect">
             <font-awesome-icon icon="fa-star fa-solid" />
           </button>
-          <button type="button" class="edit-button" @click="folded(task)">
+          <button
+            type="button"
+            class="edit-button"
+            @click="task.isFolded = !task.isFolded">
             <font-awesome-icon icon="fa-solid fa-pen" />
           </button>
         </div>
       </div>
       <div
-        v-if="!task.isFolded"
+        v-if="task.isFolded"
         :class="['status__detail', task.isCollect ? 'collect-mode' : '']">
         <div v-if="task.date" class="status__detail__date">
           <font-awesome-icon icon="fa-solid fa-calendar-days" />
@@ -191,11 +206,15 @@ const folded = (task) => {
             name="text"
             cols="10"
             rows="4"
-            placeholder="type your memo here..."></textarea>
+            placeholder="type your memo here..."
+            v-model="task.comment"></textarea>
         </div>
       </div>
       <div :class="['task__status', task.isFolded ? 'folded' : '']">
-        <button class="delete-button" type="button">
+        <button
+          class="delete-button"
+          type="button"
+          @click="deleteItem(tasks, task)">
           <i class="fa-regular fa-x"></i>
           <p>delete</p>
         </button>
@@ -209,7 +228,7 @@ const folded = (task) => {
       </div>
     </div>
   </template>
-  <div>{{ tasks }}</div>
+  <pre>{{ tasks }}</pre>
 </template>
 
 <style lang="scss" scoped>
