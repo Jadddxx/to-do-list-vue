@@ -1,29 +1,11 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faPlus,
-  faSquarePlus,
-  faStar,
-  faX,
-  faPen,
-  faCalendarDays,
-  faFile,
-  faCommentDots,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
 import "./assets/style.css";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import "@/font-awesome/index.js";
+import router from "@/router/index.js";
 
-library.add(
-  faStar,
-  faPlus,
-  faSquarePlus,
-  faX,
-  faPen,
-  faCalendarDays,
-  faFile,
-  faCommentDots
-);
+const app = createApp(App);
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).mount("#app");
+app.config.globalProperties.console = console;
+app.use(router).component("font-awesome-icon", FontAwesomeIcon).mount("#app");

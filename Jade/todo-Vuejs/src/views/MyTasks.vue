@@ -254,6 +254,11 @@ const saveTask = (task) => {
 </template>
 
 <style lang="scss" scoped>
+.container {
+  @include breakpoints(768px) {
+    max-width: 620px;
+  }
+}
 .task-add {
   @include flex(row, 10px);
   align-items: center;
