@@ -24,8 +24,8 @@ function dropHandler(e) {
   const overItemId = overItem.dataset.id;
   let moveTargetIndex;
   let overItemIndex;
-  console.log(moveTarget.querySelector(".task__head__main").children[1].value);
-  console.log(overItem.querySelector(".task__head__main").children[1].value);
+  // console.log(moveTarget.querySelector(".task__head__main").children[1].value);
+  // console.log(overItem.querySelector(".task__head__main").children[1].value);
 
   tasks.forEach((task, index) => {
     if (task.id === Number(moveTargetId)) {
@@ -82,10 +82,10 @@ function dragoverHandler(e) {
   // !如果有經過task之間的空格是task-list要避掉
   if (e.target !== moveTarget && !e.target.classList.contains("task-list")) {
     overItem = e.target.closest(".task");
-    console.log(
-      overItem.querySelector(".task__head__main").children[1].value,
-      "drag ovveeeeeer"
-    );
+    // console.log(
+    //   overItem.querySelector(".task__head__main").children[1].value,
+    //   "drag ovveeeeeer"
+    // );
 
     if (e.offsetY > overItem.offsetHeight / 2) {
       overItem.classList.add("borderBelow");
