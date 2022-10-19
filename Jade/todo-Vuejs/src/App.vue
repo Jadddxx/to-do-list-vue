@@ -1,7 +1,5 @@
 <script setup>
 import TheNavigation from "@/components/TheNavigation.vue";
-import AddTask from "./components/AddTask.vue";
-import TaskList1 from "./components/TaskList1.vue";
 </script>
 
 <template>

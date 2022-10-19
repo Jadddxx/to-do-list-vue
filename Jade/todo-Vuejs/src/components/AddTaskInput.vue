@@ -1,24 +1,7 @@
 <script setup>
 import { ref } from "vue";
-const drag = ref(false);
 let tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
 let title = ref("");
-let fileName = ref("");
-
-// 初始化的物件 fn, 確保一直產生新的物件
-const initTask = () => ({
-  id: Date.now(),
-  title: "",
-  date: "",
-  datetime: "",
-  comment: "",
-  file: "",
-  isCollect: false,
-  isFolded: false,
-  isDone: false,
-});
-
-const newTaskObject = ref(initTask());
 
 let newTask = ref(false);
 const addTasks = () => {
@@ -27,101 +10,6 @@ const addTasks = () => {
   // 把title 的值 賦值給 新的task
   newTaskObject.value.title = title.value;
 };
-
-const pushToTasks = (currentObject) => {
-  currentObject.isFolded = true;
-  // 把newTaskObject 加進去
-  tasks.value = [currentObject, ...tasks.value];
-
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
-  // 讓這塊區塊消失
-  newTask.value = false;
-
-  // 如果要消除它就必須出現
-  clearNewTaskObject();
-};
-
-const clearNewTaskObject = () => {
-  // 把title清空
-  title.value = "";
-  // 用一個初始值去賦值給newTaskObject
-  newTaskObject.value = initTask();
-};
-
-const deleteItem = function (currentObject, task) {
-  const index = currentObject.indexOf(task);
-  currentObject.splice(index, 1);
-  localStorage.setItem("tasks", JSON.stringify(currentObject));
-};
-
-const newTaskChangeFile = (event) => {
-  newTaskObject.value.file = event.target.files[0].name;
-  fileName.value = event.target.files[0].name;
-};
-
-const taskChangeFile = (event, task) => {
-  task.file = event.target.files[0].name;
-  fileName.value = event.target.files[0].name;
-};
-
-const saveTask = (task) => {
-  task.isFolded = true;
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
-};
-
-const saveFolded = (task) => {
-  task.isFolded = !task.isFolded;
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
-};
-
-const saveCollect = (task) => {
-  task.isCollect = !task.isCollect;
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
-};
-
-// drag-drop
-// let overTask = ref("");
-// let moveTask = ref("");
-
-// const startDrag = (event, task) => {
-//   moveTask.value = task;
-//   event.dataTransfer.dropEffect = "move";
-//   event.dataTransfer.effectAllowed = "move";
-//   event.dataTransfer.setData("taskID", task.id);
-//   console.log(event.dataTransfer);
-// };
-
-// const onDrop = (event) => {
-//   const taskID = event.dataTransfer.getData("taskID");
-//   console.log(taskID);
-// };
-
-// // find overTask
-// const overDrag = (event) => {
-//   if (event.target.closest(".task")) {
-//     cancelOverTask(overTask);
-//     overTask.value = event.target.closest(".task");
-//     console.log(event.offsetY);
-//     console.log(overTask.value.offsetHeight);
-
-//     if (event.offsetY > overTask.value.offsetHeight / 2) {
-//       // 會加上每一個task上
-//       // 要確實存好overTask，那個不能是被拖動的自己本身
-//       console.log("isBorderBelow");
-//       overTask.value.classList.add("borderBelow");
-//     } else {
-//       console.log("isBorderAbove");
-//       overTask.value.classList.add("borderAbove");
-//     }
-//   }
-// };
-
-// const cancelOverTask = () => {
-//   if (!overTask.value) return;
-//   overTask.value.classList.remove("borderBelow");
-//   overTask.value.classList.remove("borderAbove");
-//   overTask.value = null;
-// };
 </script>
 
 <template>
@@ -131,6 +19,7 @@ const saveCollect = (task) => {
     </button>
     <input type="text" placeholder="add task" v-model="title" />
   </form>
+  <!-- 只留上面 -->
   <template v-if="newTask">
     <div class="task" draggable="true" :key="newTaskObject.id">
       <div class="task__head">
@@ -208,108 +97,17 @@ const saveCollect = (task) => {
     </div>
   </template>
   <template v-if="tasks">
-    <!-- <draggable
+    <div
       class="task-list"
-      :list="tasks"
-      v-model="tasks"
-      group="people"
-      @start="drag = true"
-      @end="drag = false">
-      <div class="task" v-for="task in tasks" :key="task.id">
-        <div :class="['task__head', task.isCollect ? 'collect-mode' : '']">
-          <div class="task__head__main">
-            <input
-              class="task__checked"
-              type="checkbox"
-              name="checkbox"
-              v-model="task.isDone" />
-            <input
-              type="name"
-              class="task__title"
-              placeholder="type something here..."
-              :value="task.title"
-              :disabled="task.isFolded" />
-          </div>
-          <div class="task__head__icon">
-            <button
-              type="button"
-              :class="['collect-button', task.isCollect ? 'collect-color' : '']"
-              @click="saveCollect(task)">
-              <font-awesome-icon icon="fa-star fa-solid" />
-            </button>
-            <button type="button" class="edit-button" @click="saveFolded(task)">
-              <font-awesome-icon icon="fa-solid fa-pen" />
-            </button>
-          </div>
-        </div>
-        <div
-          v-if="task.isFolded"
-          :class="['status__detail', task.isCollect ? 'collect-mode' : '']">
-          <div v-if="task.date" class="status__detail__date">
-            <font-awesome-icon icon="fa-solid fa-calendar-days" />
-            <p>{{ task.date }}</p>
-          </div>
-          <div v-if="task.file" class="status__detail__file">
-            <font-awesome-icon icon="fa-solid fa-file" />
-          </div>
-          <div v-if="task.comment" class="status__detail__comment">
-            <font-awesome-icon icon="fa-solid fa-comment-dots" />
-          </div>
-        </div>
-        <div
-          :class="[
-            'task__body',
-            task.isFolded ? 'folded' : 'task-body-top-border',
-          ]">
-          <div class="date">
-            <h3>dateline</h3>
-            <div class="date__input">
-              <input type="date" placeholder="yyyy/mm/dd" v-model="task.date" />
-              <input
-                type="datetime"
-                placeholder="hh:mm"
-                v-model="task.datetime" />
-            </div>
-          </div>
-          <div class="file">
-            <h3>File</h3>
-            <label :for="'file' + task.id">
-              <font-awesome-icon icon="fa-solid fa-square-plus" />
-            </label>
-            <input
-              :id="'file' + task.id"
-              type="file"
-              name="file"
-              @change="taskChangeFile($event, task)" />
-            <div class="fileNameBox">{{ task.file }}</div>
-          </div>
-          <div class="comment">
-            <h3>comment</h3>
-            <textarea
-              name="text"
-              cols="10"
-              rows="4"
-              placeholder="type your memo here..."
-              v-model="task.comment"></textarea>
-          </div>
-        </div>
-        <div :class="['task__status', task.isFolded ? 'folded' : '']">
-          <button
-            class="delete-button"
-            type="button"
-            @click="deleteItem(tasks, task)">
-            <font-awesome-icon icon="fa-solid fa-x" />
-            <p>delete</p>
-          </button>
-          <button class="save-button" type="button" @click="saveTask(task)">
-            <font-awesome-icon icon="fa-solid fa-plus" />
-            <p>save</p>
-          </button>
-        </div>
-      </div>
-    </draggable> -->
-    <div class="task-list">
-      <div class="task" v-for="task in tasks" :key="task.id">
+      @drop="onDrop($event)"
+      @dragover.prevent="overDrag($event)"
+      @dragenter.prevent>
+      <div
+        class="task"
+        v-for="task in tasks"
+        :key="task.id"
+        draggable="true"
+        @dragstart="startDrag($event, task)">
         <div :class="['task__head', task.isCollect ? 'collect-mode' : '']">
           <div class="task__head__main">
             <input
@@ -407,11 +205,6 @@ const saveCollect = (task) => {
 </template>
 
 <style lang="scss" scoped>
-.container {
-  @include breakpoints(768px) {
-    max-width: 620px;
-  }
-}
 .task-add {
   @include flex(row, 10px);
   align-items: center;
@@ -442,9 +235,5 @@ const saveCollect = (task) => {
     padding: 0 5px;
     font-size: 30px;
   }
-}
-
-.file label {
-  font-size: 30px;
 }
 </style>
