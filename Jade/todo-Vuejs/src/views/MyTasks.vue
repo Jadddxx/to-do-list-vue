@@ -21,6 +21,8 @@ const initTask = () => ({
 const newTaskObject = ref(initTask());
 
 let newTask = ref(false);
+
+// add task
 const addTasks = () => {
   // 把區塊打開
   newTask.value = true;
@@ -54,6 +56,7 @@ const deleteItem = function (currentObject, task) {
   localStorage.setItem("tasks", JSON.stringify(currentObject));
 };
 
+// save
 const newTaskChangeFile = (event) => {
   newTaskObject.value.file = event.target.files[0].name;
   fileName.value = event.target.files[0].name;
@@ -80,48 +83,11 @@ const saveCollect = (task) => {
 };
 
 // drag-drop
-// let overTask = ref("");
-// let moveTask = ref("");
 
-// const startDrag = (event, task) => {
-//   moveTask.value = task;
-//   event.dataTransfer.dropEffect = "move";
-//   event.dataTransfer.effectAllowed = "move";
-//   event.dataTransfer.setData("taskID", task.id);
-//   console.log(event.dataTransfer);
-// };
-
-// const onDrop = (event) => {
-//   const taskID = event.dataTransfer.getData("taskID");
-//   console.log(taskID);
-// };
-
-// // find overTask
-// const overDrag = (event) => {
-//   if (event.target.closest(".task")) {
-//     cancelOverTask(overTask);
-//     overTask.value = event.target.closest(".task");
-//     console.log(event.offsetY);
-//     console.log(overTask.value.offsetHeight);
-
-//     if (event.offsetY > overTask.value.offsetHeight / 2) {
-//       // 會加上每一個task上
-//       // 要確實存好overTask，那個不能是被拖動的自己本身
-//       console.log("isBorderBelow");
-//       overTask.value.classList.add("borderBelow");
-//     } else {
-//       console.log("isBorderAbove");
-//       overTask.value.classList.add("borderAbove");
-//     }
-//   }
-// };
-
-// const cancelOverTask = () => {
-//   if (!overTask.value) return;
-//   overTask.value.classList.remove("borderBelow");
-//   overTask.value.classList.remove("borderAbove");
-//   overTask.value = null;
-// };
+const saveDragEnd = () => {
+  drag.value = false;
+  localStorage.setItem("tasks", JSON.stringify(tasks.value));
+};
 </script>
 
 <template>
@@ -208,200 +174,119 @@ const saveCollect = (task) => {
     </div>
   </template>
   <template v-if="tasks">
-    <!-- <draggable
+    <draggable
       class="task-list"
-      :list="tasks"
       v-model="tasks"
-      group="people"
       @start="drag = true"
-      @end="drag = false">
-      <div class="task" v-for="task in tasks" :key="task.id">
-        <div :class="['task__head', task.isCollect ? 'collect-mode' : '']">
-          <div class="task__head__main">
-            <input
-              class="task__checked"
-              type="checkbox"
-              name="checkbox"
-              v-model="task.isDone" />
-            <input
-              type="name"
-              class="task__title"
-              placeholder="type something here..."
-              :value="task.title"
-              :disabled="task.isFolded" />
-          </div>
-          <div class="task__head__icon">
-            <button
-              type="button"
-              :class="['collect-button', task.isCollect ? 'collect-color' : '']"
-              @click="saveCollect(task)">
-              <font-awesome-icon icon="fa-star fa-solid" />
-            </button>
-            <button type="button" class="edit-button" @click="saveFolded(task)">
-              <font-awesome-icon icon="fa-solid fa-pen" />
-            </button>
-          </div>
-        </div>
-        <div
-          v-if="task.isFolded"
-          :class="['status__detail', task.isCollect ? 'collect-mode' : '']">
-          <div v-if="task.date" class="status__detail__date">
-            <font-awesome-icon icon="fa-solid fa-calendar-days" />
-            <p>{{ task.date }}</p>
-          </div>
-          <div v-if="task.file" class="status__detail__file">
-            <font-awesome-icon icon="fa-solid fa-file" />
-          </div>
-          <div v-if="task.comment" class="status__detail__comment">
-            <font-awesome-icon icon="fa-solid fa-comment-dots" />
-          </div>
-        </div>
-        <div
-          :class="[
-            'task__body',
-            task.isFolded ? 'folded' : 'task-body-top-border',
-          ]">
-          <div class="date">
-            <h3>dateline</h3>
-            <div class="date__input">
-              <input type="date" placeholder="yyyy/mm/dd" v-model="task.date" />
+      @end="saveDragEnd()"
+      item-key="id">
+      <template #item="{ element }">
+        <div class="task">
+          <div :class="['task__head', element.isCollect ? 'collect-mode' : '']">
+            <div class="task__head__main">
               <input
-                type="datetime"
-                placeholder="hh:mm"
-                v-model="task.datetime" />
+                class="task__checked"
+                type="checkbox"
+                name="checkbox"
+                v-model="element.isDone" />
+              <input
+                type="name"
+                class="task__title"
+                placeholder="type something here..."
+                :value="element.title"
+                :disabled="element.isFolded" />
+            </div>
+            <div class="task__head__icon">
+              <button
+                type="button"
+                :class="[
+                  'collect-button',
+                  element.isCollect ? 'collect-color' : '',
+                ]"
+                @click="saveCollect(element)">
+                <font-awesome-icon icon="fa-star fa-solid" />
+              </button>
+              <button
+                type="button"
+                class="edit-button"
+                @click="saveFolded(element)">
+                <font-awesome-icon icon="fa-solid fa-pen" />
+              </button>
             </div>
           </div>
-          <div class="file">
-            <h3>File</h3>
-            <label :for="'file' + task.id">
-              <font-awesome-icon icon="fa-solid fa-square-plus" />
-            </label>
-            <input
-              :id="'file' + task.id"
-              type="file"
-              name="file"
-              @change="taskChangeFile($event, task)" />
-            <div class="fileNameBox">{{ task.file }}</div>
-          </div>
-          <div class="comment">
-            <h3>comment</h3>
-            <textarea
-              name="text"
-              cols="10"
-              rows="4"
-              placeholder="type your memo here..."
-              v-model="task.comment"></textarea>
-          </div>
-        </div>
-        <div :class="['task__status', task.isFolded ? 'folded' : '']">
-          <button
-            class="delete-button"
-            type="button"
-            @click="deleteItem(tasks, task)">
-            <font-awesome-icon icon="fa-solid fa-x" />
-            <p>delete</p>
-          </button>
-          <button class="save-button" type="button" @click="saveTask(task)">
-            <font-awesome-icon icon="fa-solid fa-plus" />
-            <p>save</p>
-          </button>
-        </div>
-      </div>
-    </draggable> -->
-    <div class="task-list">
-      <div class="task" v-for="task in tasks" :key="task.id">
-        <div :class="['task__head', task.isCollect ? 'collect-mode' : '']">
-          <div class="task__head__main">
-            <input
-              class="task__checked"
-              type="checkbox"
-              name="checkbox"
-              v-model="task.isDone" />
-            <input
-              type="name"
-              class="task__title"
-              placeholder="type something here..."
-              :value="task.title"
-              :disabled="task.isFolded" />
-          </div>
-          <div class="task__head__icon">
-            <button
-              type="button"
-              :class="['collect-button', task.isCollect ? 'collect-color' : '']"
-              @click="saveCollect(task)">
-              <font-awesome-icon icon="fa-star fa-solid" />
-            </button>
-            <button type="button" class="edit-button" @click="saveFolded(task)">
-              <font-awesome-icon icon="fa-solid fa-pen" />
-            </button>
-          </div>
-        </div>
-        <div
-          v-if="task.isFolded"
-          :class="['status__detail', task.isCollect ? 'collect-mode' : '']">
-          <div v-if="task.date" class="status__detail__date">
-            <font-awesome-icon icon="fa-solid fa-calendar-days" />
-            <p>{{ task.date }}</p>
-          </div>
-          <div v-if="task.file" class="status__detail__file">
-            <font-awesome-icon icon="fa-solid fa-file" />
-          </div>
-          <div v-if="task.comment" class="status__detail__comment">
-            <font-awesome-icon icon="fa-solid fa-comment-dots" />
-          </div>
-        </div>
-        <div
-          :class="[
-            'task__body',
-            task.isFolded ? 'folded' : 'task-body-top-border',
-          ]">
-          <div class="date">
-            <h3>dateline</h3>
-            <div class="date__input">
-              <input type="date" placeholder="yyyy/mm/dd" v-model="task.date" />
-              <input
-                type="datetime"
-                placeholder="hh:mm"
-                v-model="task.datetime" />
+          <div
+            v-if="element.isFolded"
+            :class="[
+              'status__detail',
+              element.isCollect ? 'collect-mode' : '',
+            ]">
+            <div v-if="element.date" class="status__detail__date">
+              <font-awesome-icon icon="fa-solid fa-calendar-days" />
+              <p>{{ element.date }}</p>
+            </div>
+            <div v-if="element.file" class="status__detail__file">
+              <font-awesome-icon icon="fa-solid fa-file" />
+            </div>
+            <div v-if="element.comment" class="status__detail__comment">
+              <font-awesome-icon icon="fa-solid fa-comment-dots" />
             </div>
           </div>
-          <div class="file">
-            <h3>File</h3>
-            <label :for="'file' + task.id">
-              <font-awesome-icon icon="fa-solid fa-square-plus" />
-            </label>
-            <input
-              :id="'file' + task.id"
-              type="file"
-              name="file"
-              @change="taskChangeFile($event, task)" />
-            <div class="fileNameBox">{{ task.file }}</div>
+          <div
+            :class="[
+              'task__body',
+              element.isFolded ? 'folded' : 'task-body-top-border',
+            ]">
+            <div class="date">
+              <h3>dateline</h3>
+              <div class="date__input">
+                <input
+                  type="date"
+                  placeholder="yyyy/mm/dd"
+                  v-model="element.date" />
+                <input
+                  type="datetime"
+                  placeholder="hh:mm"
+                  v-model="element.datetime" />
+              </div>
+            </div>
+            <div class="file">
+              <h3>File</h3>
+              <label :for="'file' + element.id">
+                <font-awesome-icon icon="fa-solid fa-square-plus" />
+              </label>
+              <input
+                :id="'file' + element.id"
+                type="file"
+                name="file"
+                @change="taskChangeFile($event, task)" />
+              <div class="fileNameBox">{{ element.file }}</div>
+            </div>
+            <div class="comment">
+              <h3>comment</h3>
+              <textarea
+                name="text"
+                cols="10"
+                rows="4"
+                placeholder="type your memo here..."
+                v-model="element.comment"></textarea>
+            </div>
           </div>
-          <div class="comment">
-            <h3>comment</h3>
-            <textarea
-              name="text"
-              cols="10"
-              rows="4"
-              placeholder="type your memo here..."
-              v-model="task.comment"></textarea>
+          <div :class="['task__status', element.isFolded ? 'folded' : '']">
+            <button
+              class="delete-button"
+              type="button"
+              @click="deleteItem(tasks, element)">
+              <font-awesome-icon icon="fa-solid fa-x" />
+              <p>delete</p>
+            </button>
+            <button class="save-button" type="button" @click="saveTask(task)">
+              <font-awesome-icon icon="fa-solid fa-plus" />
+              <p>save</p>
+            </button>
           </div>
         </div>
-        <div :class="['task__status', task.isFolded ? 'folded' : '']">
-          <button
-            class="delete-button"
-            type="button"
-            @click="deleteItem(tasks, task)">
-            <font-awesome-icon icon="fa-solid fa-x" />
-            <p>delete</p>
-          </button>
-          <button class="save-button" type="button" @click="saveTask(task)">
-            <font-awesome-icon icon="fa-solid fa-plus" />
-            <p>save</p>
-          </button>
-        </div>
-      </div>
-    </div>
+      </template>
+    </draggable>
   </template>
   <pre>{{ tasks }}</pre>
 </template>
