@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from "vue";
-const drag = ref(false);
-let tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
+import draggable from "vuedraggable";
+import AddTaskInput from "@/components/AddTaskInput.vue";
+
+const tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
 let title = ref("");
 let fileName = ref("");
+const drag = ref(false);
 
 // 初始化的物件 fn, 確保一直產生新的物件
 const initTask = () => ({
@@ -62,27 +65,32 @@ const newTaskChangeFile = (event) => {
   fileName.value = event.target.files[0].name;
 };
 
-const taskChangeFile = (event, task) => {
-  task.file = event.target.files[0].name;
+const taskChangeFile = (event, element) => {
+  element.file = event.target.files[0].name;
   fileName.value = event.target.files[0].name;
 };
 
-const saveTask = (task) => {
-  task.isFolded = true;
+const saveTask = (element) => {
+  element.isFolded = true;
   localStorage.setItem("tasks", JSON.stringify(tasks.value));
 };
 
-const saveFolded = (task) => {
-  task.isFolded = !task.isFolded;
+const saveFolded = (element) => {
+  element.isFolded = !element.isFolded;
   localStorage.setItem("tasks", JSON.stringify(tasks.value));
 };
 
-const saveCollect = (task) => {
-  task.isCollect = !task.isCollect;
+const saveCollect = (element) => {
+  element.isCollect = !element.isCollect;
   localStorage.setItem("tasks", JSON.stringify(tasks.value));
 };
 
-// drag-drop
+const saveDone = (element) => {
+  element.isDone = !element.isDone;
+  localStorage.setItem("tasks", JSON.stringify(tasks.value));
+};
+
+// drag-drop save
 
 const saveDragEnd = () => {
   drag.value = false;
@@ -91,6 +99,7 @@ const saveDragEnd = () => {
 </script>
 
 <template>
+  <!-- <AddTaskInput /> -->
   <form class="task-add">
     <button type="submit" @click.prevent="addTasks()">
       <font-awesome-icon icon="fa-solid fa-plus" />
@@ -279,7 +288,10 @@ const saveDragEnd = () => {
               <font-awesome-icon icon="fa-solid fa-x" />
               <p>delete</p>
             </button>
-            <button class="save-button" type="button" @click="saveTask(task)">
+            <button
+              class="save-button"
+              type="button"
+              @click="saveTask(element)">
               <font-awesome-icon icon="fa-solid fa-plus" />
               <p>save</p>
             </button>
@@ -288,7 +300,6 @@ const saveDragEnd = () => {
       </template>
     </draggable>
   </template>
-  <pre>{{ tasks }}</pre>
 </template>
 
 <style lang="scss" scoped>
