@@ -5,7 +5,6 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/to-do-list-vue/Jade/todo-Vuejs/dist/",
   plugins: [vue()],
   resolve: {
     alias: {
