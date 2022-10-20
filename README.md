@@ -25,5 +25,5 @@ https://hexschool.github.io/THE_F2E_Design/todolist/
 
 ## Launch
 
-Vue to-do list: https://jadddxx.github.io/to-do-list-vue/Jade/todo-Vuejs/dist/
-原生JS to-do list: https://jadddxx.github.io/to-do-list-vue/Jade/vanilla%20JS/#
+* Vue to-do list: https://jadddxx.github.io/to-do-list-vue/Jade/todo-Vuejs/dist/
+* 原生JS to-do list: https://jadddxx.github.io/to-do-list-vue/Jade/vanilla%20JS/#
