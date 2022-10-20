@@ -7,17 +7,17 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: "/to-do-list-vue/Jade/todo-Vuejs/dist/",
+      path: "/",
       name: "MyTasks",
       component: MyTasks,
     },
     {
-      path: "/to-do-list-vue/Jade/todo-Vuejs/dist/complete",
+      path: "/complete",
       name: "Complete",
       component: Complete,
     },
     {
-      path: "/to-do-list-vue/Jade/todo-Vuejs/dist/inProgress",
+      path: "/inProgress",
       name: "InProgress",
       component: InProgress,
     },
