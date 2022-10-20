@@ -4,7 +4,7 @@ import Complete from "@/views/Complete.vue";
 import InProgress from "@/views/InProgress.vue";
 
 const router = createRouter({
-  history: createWebHistory("/to-do-list-vue/Jade/todo-Vuejs/dist/"),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
