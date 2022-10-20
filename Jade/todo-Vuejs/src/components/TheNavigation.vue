@@ -16,26 +16,17 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link
-              class="nav-link"
-              data-nav="0"
-              to="/to-do-list-vue/Jade/todo-Vuejs/dist/"
+            <router-link class="nav-link" data-nav="0" to="/"
               >my tasks</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link
-              class="nav-link"
-              data-nav="1"
-              to="/to-do-list-vue/Jade/todo-Vuejs/dist/inProgress"
+            <router-link class="nav-link" data-nav="1" to="/inProgress"
               >in progress</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link
-              class="nav-link"
-              data-nav="2"
-              to="/to-do-list-vue/Jade/todo-Vuejs/dist/complete"
+            <router-link class="nav-link" data-nav="2" to="/complete"
               >completed</router-link
             >
           </li>
