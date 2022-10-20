@@ -16,17 +16,17 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" data-nav="0" to="/"
+            <router-link class="nav-link" data-nav="0" to="{ name: MyTasks }"
               >my tasks</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" data-nav="1" to="/inProgress"
+            <router-link class="nav-link" data-nav="1" to="{ name: inProgress }"
               >in progress</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" data-nav="2" to="/complete"
+            <router-link class="nav-link" data-nav="2" to="{ name: complete }"
               >completed</router-link
             >
           </li>
