@@ -6,9 +6,21 @@ import InProgress from "@/views/InProgress.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", name: "MyTasks", component: MyTasks },
-    { path: "/complete", name: "Complete", component: Complete },
-    { path: "/inProgress", name: "InProgress", component: InProgress },
+    {
+      path: "/to-do-list-vue/Jade/todo-Vuejs/dist/",
+      name: "MyTasks",
+      component: MyTasks,
+    },
+    {
+      path: "/to-do-list-vue/Jade/todo-Vuejs/dist/complete",
+      name: "Complete",
+      component: Complete,
+    },
+    {
+      path: "/to-do-list-vue/Jade/todo-Vuejs/dist/inProgress",
+      name: "InProgress",
+      component: InProgress,
+    },
   ],
 });
 
