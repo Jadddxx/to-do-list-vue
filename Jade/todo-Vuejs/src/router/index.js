@@ -8,17 +8,17 @@ const router = createRouter({
   base: "/to-do-list-vue/Jade/todo-Vuejs/dist/",
   routes: [
     {
-      path: base + "/",
+      path: "/",
       name: "MyTasks",
       component: MyTasks,
     },
     {
-      path: base + "/complete",
+      path: "/complete",
       name: "Complete",
       component: Complete,
     },
     {
-      path: base + "/inProgress",
+      path: "/inProgress",
       name: "InProgress",
       component: InProgress,
     },
