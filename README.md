@@ -1,5 +1,7 @@
 # to-do-list vue
 
+程式碼請切到 branch Jade
+
 使用 Vue3 框架的 to-do list，功能都可以正常使用。
 
 來源是參考 F2E 第一屆的關卡：
