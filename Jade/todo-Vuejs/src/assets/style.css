@@ -48,7 +48,7 @@ ul {
   text-decoration: line-through;
 }
 .task__head__main input[type=name] {
-  width: 360px;
+  width: 100%;
   border: 1px transparent solid;
   background-color: transparent;
   padding: 0 5px;

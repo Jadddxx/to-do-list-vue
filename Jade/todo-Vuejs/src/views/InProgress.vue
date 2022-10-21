@@ -74,11 +74,12 @@ const saveDragEnd = () => {
                   element.isCollect ? 'collect-color' : '',
                 ]"
                 @click="saveCollect(element)">
-                <font-awesome-icon icon="fa-star fa-solid" />
+                <font-awesome-icon
+                  :icon="`${element.isCollect ? 'fa-star' : 'far fa-star'}`" />
               </button>
               <button
                 type="button"
-                class="edit-button"
+                :class="['edit-button', element.isFolded ? '' : 'edit-color']"
                 @click="saveFolded(element)">
                 <font-awesome-icon icon="fa-solid fa-pen" />
               </button>
@@ -128,7 +129,7 @@ const saveDragEnd = () => {
                 :id="'file' + element.id"
                 type="file"
                 name="file"
-                @change="taskChangeFile($event, task)" />
+                @change="taskChangeFile($event, element)" />
               <div class="fileNameBox">{{ element.file }}</div>
             </div>
             <div class="comment">
@@ -161,10 +162,26 @@ const saveDragEnd = () => {
       </div>
     </template>
   </draggable>
+  <p class="task-left">
+    <i>{{ tasks.length }} tasks left</i>
+  </p>
 </template>
 
 <style lang="scss" scoped>
 .file label {
   font-size: 30px;
+}
+
+.edit-color {
+  color: $primary;
+}
+
+.task-list {
+  padding-bottom: 30px;
+}
+.task-left {
+  font-size: 16px;
+  text-align: right;
+  color: rgb(144, 143, 143);
 }
 </style>
