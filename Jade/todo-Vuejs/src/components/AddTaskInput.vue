@@ -55,36 +55,4 @@ const clearNewTaskObject = () => {
   </form>
 </template>
 
-<style lang="scss" scoped>
-.task-add {
-  @include flex(row, 10px);
-  align-items: center;
-  padding: 9px 32px;
-  margin-top: 20px;
-  border-radius: 5px;
-  border: 2px $body_bg solid;
-  background-color: white;
-
-  button[type="submit"] {
-    background-color: transparent;
-    border: 1px solid transparent;
-    height: 24px;
-    width: 24px;
-    padding: 0;
-    .fa-plus {
-      @include icon_justify(-5px);
-      font-size: 35px;
-      left: -3px;
-      color: $body_bg;
-      font-style: normal;
-    }
-  }
-
-  input[type="text"] {
-    @include input-add;
-    margin-top: 0;
-    padding: 0 5px;
-    font-size: 30px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

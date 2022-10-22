@@ -123,7 +123,7 @@ const saveDragEnd = () => {
         </div>
         <div class="task__head__icon">
           <button type="button" class="collect-button">
-            <font-awesome-icon icon="fa-solid fa-star" />
+            <font-awesome-icon icon="far fa-star" />
           </button>
           <button type="button" class="edit-button">
             <font-awesome-icon icon="fa-solid fa-pen" />
@@ -312,38 +312,6 @@ const saveDragEnd = () => {
     max-width: 620px;
   }
 }
-.task-add {
-  @include flex(row, 10px);
-  align-items: center;
-  padding: 9px 32px;
-  margin-top: 20px;
-  border-radius: 5px;
-  border: 2px $body_bg solid;
-  background-color: white;
-
-  button[type="submit"] {
-    background-color: transparent;
-    border: 1px solid transparent;
-    height: 24px;
-    width: 24px;
-    padding: 0;
-    .fa-plus {
-      @include icon_justify(-5px);
-      font-size: 35px;
-      left: -3px;
-      color: $body_bg;
-      font-style: normal;
-    }
-  }
-
-  input[type="text"] {
-    @include input-add;
-    margin-top: 0;
-    padding: 0 5px;
-    font-size: 30px;
-  }
-}
-
 .file label {
   font-size: 30px;
 }
