@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import draggable from "vuedraggable";
 let tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
 let title = ref("");
@@ -40,6 +40,11 @@ const saveDragEnd = () => {
   drag.value = false;
   localStorage.setItem("tasks", JSON.stringify(tasks.value));
 };
+
+const progressTasks = computed(() => {
+  const progressTask = tasks.value.filter((task) => !task.isDone);
+  return progressTask;
+});
 </script>
 
 <template>
@@ -163,7 +168,7 @@ const saveDragEnd = () => {
     </template>
   </draggable>
   <p class="task-left">
-    <i>{{ tasks.length }} tasks left</i>
+    <i>{{ progressTasks.length }} tasks left</i>
   </p>
 </template>
 
