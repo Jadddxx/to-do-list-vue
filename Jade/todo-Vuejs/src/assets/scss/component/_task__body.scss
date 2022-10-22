@@ -22,8 +22,12 @@
       }
 
       &__input {
-        @include display.flex(row, 10px);
+        @include display.flex(column, 10px);
         width: 100%;
+
+        @include abstracts.breakpoints(576px) {
+          @include display.flex(row, 10px);
+        }
 
         input {
           @include input.input-basic;
