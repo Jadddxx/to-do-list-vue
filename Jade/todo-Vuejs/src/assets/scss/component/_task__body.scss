@@ -6,8 +6,12 @@
 
 .task {
   &__body {
-    padding: 28px 96px;
+    padding: 28px 46px;
     @include display.flex(column, 10px);
+
+    @include abstracts.breakpoints(576px) {
+      padding: 28px 96px;
+    }
 
     .date {
       @include display.flex(column, 0);
