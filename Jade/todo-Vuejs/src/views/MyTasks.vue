@@ -2,6 +2,8 @@
 import { computed, ref } from "vue";
 import draggable from "vuedraggable";
 import AddTaskInput from "@/components/AddTaskInput.vue";
+import TaskLeft from "@/components/TaskLeft.vue";
+
 // import {
 //   newTaskChangeFile,
 //   taskChangeFile,
@@ -310,10 +312,8 @@ const saveDragEnd = () => {
         </div>
       </template>
     </draggable>
+    <TaskLeft :length="tasks.length" :is-done="'left'" />
   </template>
-  <p class="task-left">
-    <i>{{ tasks.length }} tasks left</i>
-  </p>
 </template>
 
 <style lang="scss" scoped>
@@ -328,14 +328,5 @@ const saveDragEnd = () => {
 
 .edit-color {
   color: $primary;
-}
-
-.task-list {
-  padding-bottom: 30px;
-}
-.task-left {
-  font-size: 16px;
-  text-align: right;
-  color: rgb(144, 143, 143);
 }
 </style>

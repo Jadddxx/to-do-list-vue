@@ -1,6 +1,8 @@
 <script setup>
 import { computed, ref } from "vue";
 import draggable from "vuedraggable";
+import TaskLeft from "@/components/TaskLeft.vue";
+
 let tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
 let title = ref("");
 let fileName = ref("");
@@ -43,7 +45,7 @@ const saveDragEnd = () => {
 
 const progressTasks = computed(() => {
   const progressTask = tasks.value.filter((task) => !task.isDone);
-  return progressTask;
+  return progressTask.length;
 });
 </script>
 
@@ -167,9 +169,7 @@ const progressTasks = computed(() => {
       </div>
     </template>
   </draggable>
-  <p class="task-left">
-    <i>{{ progressTasks.length }} tasks left</i>
-  </p>
+  <TaskLeft :length="progressTasks" :is-done="'left'" />
 </template>
 
 <style lang="scss" scoped>
@@ -179,14 +179,5 @@ const progressTasks = computed(() => {
 
 .edit-color {
   color: $primary;
-}
-
-.task-list {
-  padding-bottom: 30px;
-}
-.task-left {
-  font-size: 16px;
-  text-align: right;
-  color: rgb(144, 143, 143);
 }
 </style>
