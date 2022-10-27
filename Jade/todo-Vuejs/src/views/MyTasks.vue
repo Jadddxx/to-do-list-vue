@@ -2,6 +2,15 @@
 import { computed, ref } from "vue";
 import draggable from "vuedraggable";
 import AddTaskInput from "@/components/AddTaskInput.vue";
+// import {
+//   newTaskChangeFile,
+//   taskChangeFile,
+//   saveTask,
+//   saveFolded,
+//   saveCollect,
+//   saveDone,
+//   saveDragEnd,
+// } from "@/javascript/saveTask.js";
 
 const tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
 let title = ref("");
@@ -60,6 +69,7 @@ const deleteItem = function (currentObject, task) {
 };
 
 // save
+
 const newTaskChangeFile = (event) => {
   newTaskObject.value.file = event.target.files[0].name;
   fileName.value = event.target.files[0].name;
