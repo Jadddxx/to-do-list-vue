@@ -1,8 +1,12 @@
 <script setup>
 import { computed, ref } from "vue";
+import { storeToRefs } from "pinia";
 import draggable from "vuedraggable";
 import AddTaskInput from "@/components/AddTaskInput.vue";
 import TaskLeft from "@/components/TaskLeft.vue";
+import { useTasksStore } from "@/store/tasksStore.js";
+
+// const tasks = storeToRefs(useTasksStore());
 
 // import {
 //   newTaskChangeFile,
