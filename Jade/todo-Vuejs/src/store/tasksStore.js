@@ -4,7 +4,6 @@ export const useTasksStore = defineStore("taskStore", {
   // 要直接回傳一個value，但是那個是一個物件，所以再用小括號包著
   state: () => ({
     tasks: [],
-    name: "Jade",
   }),
   getters: {
     isDone() {
