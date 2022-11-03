@@ -1,63 +1,27 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
+import { useTasksStore } from "@/store/tasksStore.js";
 import draggable from "vuedraggable";
+import AddTaskInputVue from "@/components/AddTaskInput.vue";
 import TaskLeft from "@/components/TaskLeft.vue";
 
-let tasks = ref(JSON.parse(localStorage.getItem("tasks")) || []);
-let title = ref("");
-let fileName = ref("");
+const taskStore = useTasksStore();
 const drag = ref(false);
-
-const newTaskChangeFile = (event) => {
-  newTaskObject.value.file = event.target.files[0].name;
-  fileName.value = event.target.files[0].name;
-};
-
-const taskChangeFile = (event, element) => {
-  element.file = event.target.files[0].name;
-  fileName.value = event.target.files[0].name;
-};
-
-const saveTask = (element) => {
-  element.isFolded = true;
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
-};
-
-const saveFolded = (element) => {
-  element.isFolded = !element.isFolded;
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
-};
-
-const saveCollect = (element) => {
-  element.isCollect = !element.isCollect;
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
-};
-
-const saveDone = (element) => {
-  element.isDone = !element.isDone;
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
-};
 
 const saveDragEnd = () => {
   drag.value = false;
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
 };
-
-const completeTasks = computed(() => {
-  const completeTask = tasks.value.filter((task) => task.isDone);
-  return completeTask.length;
-});
 </script>
 
 <template>
   <draggable
     class="task-list"
-    v-model="tasks"
+    v-model="taskStore.tasks"
     @start="drag = true"
     @end="saveDragEnd()"
     item-key="id">
     <template #item="{ element }">
-      <div v-if="element.isDone === true">
+      <template v-if="element.isDone">
         <div class="task">
           <div :class="['task__head', element.isCollect ? 'collect-mode' : '']">
             <div class="task__head__main">
@@ -80,15 +44,15 @@ const completeTasks = computed(() => {
                   'collect-button',
                   element.isCollect ? 'collect-color' : '',
                 ]"
-                @click="saveCollect(element)">
+                @click="taskStore.toggleCollect(element.id)">
                 <font-awesome-icon
                   :icon="`${element.isCollect ? 'fa-star' : 'far fa-star'}`" />
               </button>
               <button
                 type="button"
                 :class="['edit-button', element.isFolded ? '' : 'edit-color']"
-                @click="saveFolded(element)">
-                <font-awesome-icon icon="fa-solid fa-pen" />
+                @click="taskStore.editTask(element.id)">
+                <font-awesome-icon icon="fa-pen" />
               </button>
             </div>
           </div>
@@ -136,7 +100,7 @@ const completeTasks = computed(() => {
                 :id="'file' + element.id"
                 type="file"
                 name="file"
-                @change="taskChangeFile($event, element)" />
+                @change="taskStore.fileTask($event, element)" />
               <div class="fileNameBox">{{ element.file }}</div>
             </div>
             <div class="comment">
@@ -153,31 +117,27 @@ const completeTasks = computed(() => {
             <button
               class="delete-button"
               type="button"
-              @click="deleteItem(tasks, element)">
+              @click="taskStore.deleteTask(element.id)">
               <font-awesome-icon icon="fa-solid fa-x" />
               <p>delete</p>
             </button>
             <button
               class="save-button"
               type="button"
-              @click="saveTask(element)">
+              @click="taskStore.editTask(element.id)">
               <font-awesome-icon icon="fa-solid fa-plus" />
               <p>save</p>
             </button>
           </div>
         </div>
-      </div>
+      </template>
     </template>
   </draggable>
-  <TaskLeft :length="completeTasks" :is-done="'completed'" />
+  <TaskLeft :length="taskStore.isDoneCount" :is-done="'completed'" />
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .file label {
   font-size: 30px;
-}
-
-.edit-color {
-  color: $primary;
 }
 </style>
