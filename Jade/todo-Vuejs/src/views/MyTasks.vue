@@ -4,8 +4,9 @@ import { storeToRefs } from "pinia";
 import draggable from "vuedraggable";
 import AddTaskInput from "@/components/AddTaskInput.vue";
 import TaskLeft from "@/components/TaskLeft.vue";
-import { useTasksStore } from "@/store/tasksStore.js";
+import TestStore from "@/components/TestStore.vue";
 
+// import { useTasksStore } from "@/store/tasksStore.js";
 // const tasks = storeToRefs(useTasksStore());
 
 // import {
@@ -123,7 +124,7 @@ const saveDragEnd = () => {
     <input type="text" placeholder="add task" v-model="title" />
   </form>
   <template v-if="newTask">
-    <div class="task" draggable="true" :key="newTaskObject.id">
+    <div class="task" :key="newTaskObject.id">
       <div class="task__head">
         <div class="task__head__main">
           <input
@@ -199,6 +200,7 @@ const saveDragEnd = () => {
     </div>
   </template>
   <template v-if="tasks">
+    <!-- 可以拆props出去？ -->
     <draggable
       class="task-list"
       v-model="tasks"
@@ -318,6 +320,7 @@ const saveDragEnd = () => {
     </draggable>
     <TaskLeft :length="tasks.length" :is-done="'left'" />
   </template>
+  <TestStore />
 </template>
 
 <style lang="scss" scoped>
@@ -328,9 +331,5 @@ const saveDragEnd = () => {
 }
 .file label {
   font-size: 30px;
-}
-
-.edit-color {
-  color: $primary;
 }
 </style>
