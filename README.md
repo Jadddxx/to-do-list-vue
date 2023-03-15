@@ -1,4 +1,4 @@
-# to-do-list vue
+# to-do-list
 
 程式碼請切到 branch Jade
 
@@ -6,6 +6,12 @@
 
 來源是參考 F2E 第一屆的關卡：
 https://hexschool.github.io/THE_F2E_Design/todolist/
+
+
+## Launch
+
+* Vue to-do list: https://jadddxx.github.io/to-do-list-vue/Jade/todo-Vuejs/dist/
+* 原生JS to-do list: https://jadddxx.github.io/to-do-list-vue/Jade/vanilla%20JS/#
 
 ## Functional
 
@@ -24,8 +30,3 @@ https://hexschool.github.io/THE_F2E_Design/todolist/
 * Vue draggable
 * Bootstrap  5.2.1
 * Scss
-
-## Launch
-
-* Vue to-do list: https://jadddxx.github.io/to-do-list-vue/Jade/todo-Vuejs/dist/
-* 原生JS to-do list: https://jadddxx.github.io/to-do-list-vue/Jade/vanilla%20JS/#
